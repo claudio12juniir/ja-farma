@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>J.A Produtos Farmacêuticos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
@@ -13,17 +16,18 @@
 <body class="not-logged">
 
 <aside id="main-sidebar" class="sidebar" style="display: none;">
-    <div style="padding: 20px; text-align: center;">
-        <h3 style="color: white; margin: 0;">SISTEMA FARMACÊUTICO</h3>
+    <div class="sidebar-brand">
+        <img src="img/logo.png" alt="J.A" class="sidebar-logo">
+        <span class="sidebar-brand-text">SISTEMA FARMACÊUTICO</span>
     </div>
     <nav class="menu">
-        <button onclick="showTab('intro')">INÍCIO</button>
-        <button onclick="showTab('aba-estoque')">ESTOQUE</button>
-        <button onclick="showTab('aba-nfe')">EMISSÃO NF-e</button>
-        <button onclick="showTab('serv2')">HISTÓRICO</button>
-        <button class="admin-only" onclick="showTab('serv1')">ANÁLISE MENSAL</button>
-        <button class="admin-only" onclick="showTab('aba-gestao')">EQUIPE</button>
-        <button onclick="logout()" style="color: #ff4d4f; margin-top: 20px;">SAIR</button>
+        <button onclick="showTab('intro')"><span class="menu-icon">🏠</span>Início</button>
+        <button onclick="showTab('aba-estoque')"><span class="menu-icon">📦</span>Estoque</button>
+        <button onclick="showTab('aba-nfe')"><span class="menu-icon">🧾</span>Emissão NF-e</button>
+        <button onclick="showTab('serv2')"><span class="menu-icon">🕒</span>Histórico</button>
+        <button class="admin-only" onclick="showTab('serv1')"><span class="menu-icon">📊</span>Análise Mensal</button>
+        <button class="admin-only" onclick="showTab('aba-gestao')"><span class="menu-icon">👥</span>Equipe</button>
+        <button class="menu-logout" onclick="logout()"><span class="menu-icon">⏻</span>Sair</button>
     </nav>
 </aside>
 
@@ -31,14 +35,15 @@
 
     <section id="aba-login" class="tab active">
         <div class="login-box">
-    <h2 style="color: #1e3a8a; margin-bottom: 10px;">Portal J.A</h2>
-    <p style="color: #64748b; margin-bottom: 25px;">Sistema Integrado de Gestão</p>
+    <img src="img/logo.png" alt="J.A Produtos Médicos" class="login-logo">
+    <h2 class="login-title">Portal J.A</h2>
+    <p class="login-subtitle">Sistema Integrado de Gestão</p>
 
     <input type="text" id="login-user" placeholder="Usuário" class="modal-input">
-    <input type="password" id="login-pass" placeholder="Senha" class="modal-input"> 
+    <input type="password" id="login-pass" placeholder="Senha" class="modal-input">
 
-    <p id="msg-erro" style="color: #ef4444; font-weight: bold; font-size: 0.9rem; display: none; margin: 10px 0;"></p>
-    <button id="btn-login" class="btn-primary" style="width: 100%; margin-top: 15px;">ACESSAR SISTEMA</button>
+    <p id="msg-erro"></p>
+    <button id="btn-login" class="btn-primary btn-block">ACESSAR SISTEMA</button>
 </div>
     </section>
 

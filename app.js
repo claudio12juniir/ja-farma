@@ -218,7 +218,7 @@ function showTab(id) {
     const sidebar = document.getElementById("main-sidebar");
     const content = document.getElementById("main-content");
     if (id === 'aba-login') { sidebar.style.display = "none"; content.style.marginLeft = "0"; }
-    else { sidebar.style.display = "flex"; content.style.marginLeft = "320px"; }
+    else { sidebar.style.display = "flex"; content.style.marginLeft = "336px"; }
 
     // Gatilhos de carregamento específicos
     if(id === 'serv1') carregarDashboard();
