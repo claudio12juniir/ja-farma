@@ -1,0 +1,220 @@
+﻿Nº;Nome;Categorias;Preço;Peso (kg);Altura (cm);Largura (cm);Comprimento (cm);Estoque;SKU;Código de barras;Marca
+1;MedTeste Dengue NS1 (Teste Rápido) - CX C/25un;;248.70;0.30;7.00;20.00;15.00;6;;;MedTeste
+2;Sérum Facial Hidratante Extrato de Chia - Ludurana - CX C/18 UN;;140.20;0.30;8.00;18.00;5.00;1;;;Ludurana
+3;Sérum Facial Hidratante Extrato de Linhaça - Ludurana - CX C/18 UN;;140.20;0.50;12.00;25.00;8.00;1;;;Ludurana
+4;Sérum Facial Hidratante Extrato de Quinoa - Ludurana - CX C/18 UN;;140.20;0.80;10.00;18.00;7.00;1;;;
+5;Lenço Demaquilante Hidratante - Toque Special (25 Unidades);;7.60;0.15;9.00;16.00;3.00;12;;;Toque Special
+6;Creme Corporal Desodorante Doce Limão com Niacinamida - Derma Chem (200g);;14.45;0.30;19.00;6.00;4.00;12;;;Derma Chem
+7;Máscara Facial de Mel - Skin Care (Yoyô Maquiamor) - pct c/10;;5.32;0.03;14.00;10.00;1.00;3;;;Yoyô Maquiamor
+8;Paleta Infantil Minnie Mouse - Sombras e Batom (Fenzza);;20.55;0.10;25.00;15.00;3.00;4;;;Fenzza
+9;Paleta Infantil Minnie Mouse - Sombras e Brilho (Fenzza);;20.55;0.10;18.00;15.00;3.00;2;;;Fenzza
+10;Paleta Infantil Minnie Mouse - Sombras e Batom (Fenzza);;20.55;0.05;25.00;14.00;3.00;4;;;Fenzza
+11;Paleta Infantil Minnie Mouse - Sombras e Batom (Fenzza);;20.55;0.10;25.00;15.00;3.00;3;;;Fenzza
+12;Kit Infantil Disney Encanto - Paleta de Brilhos e Batom (Fenzza);;14.30;0.05;20.00;15.00;3.00;3;;;Fenzza
+13;Sabonete Facial Ácido Salicílico - Derma Chem (100ml);;14.25;0.15;17.00;6.00;4.00;12;;;Derma Chem
+14;Esfoliante Facial Vitamina C - Derma Chem (100g);;14.25;0.12;15.00;5.00;4.00;12;;;Derma Chem
+15;Gel Esfoliante Rosa Mosqueta - Derma Chem (100g);;15.30;0.12;16.00;6.00;3.00;12;;;Derma Chem
+16;Creme Corporal Desodorante Body Juice Morango - Derma Chem (100g);;11.40;0.15;15.00;5.00;4.00;12;;;Derma Chem
+17;Esfoliante Facial Ácido Salicílico - Derma Chem (100g);;13.68;0.15;16.00;6.00;4.00;12;;;Derma Chem
+18;Gel Facial Rosa Mosqueta - Derma Chem (100g);Medicamento;15.58;0.12;15.00;6.00;4.00;12;;;Derma Chem
+19;Kit de Maquiagem Infantil Disney Encanto - Paleta de Sombras e Batom - Fenzza (Arco-Íris);;21.50;0.10;25.00;15.00;3.00;3;;;Fenzza
+20;Kit de Maquiagem Infantil Disney Encanto - Paleta de Sombras, Batom e Brilho - Fenzza;EPI;15.20;0.05;20.00;12.00;3.00;3;;;Fenzza
+21;Kit de Maquiagem Infantil Disney Encanto - Sombra e Brilho - Fenzza;;15.20;0.05;20.00;12.00;3.00;3;;;Fenzza
+22;Blue Touch - ESSENCIART Eau de Parfum (30ml);Insumos Hospitalares;37.80;0.15;12.00;5.00;3.00;7;;;ESSENCIART
+23;Sublime - ESSENCIART Eau de Parfum (30ml);EPI;37.80;0.20;12.00;4.00;4.00;7;;;ESSENCIART
+24;Unique Desire - ESSENCIART Eau de Parfum (30ml);EPI, Insumos Hospitalares, Equipamentos, Medicamento;37.80;0.25;11.00;4.00;4.00;7;;;ESSENCIART
+25;Adventure - ESSENCIART Eau de Toilette (30ml);Medicamento;37.80;0.15;12.00;5.00;3.00;5;;;ESSENCIART
+26;Máscara Facial Rosa Mosqueta - YOYO MAQUIAMOR (25ml) - pct c/ 10un;Insumos Hospitalares;38.36;0.00;0.00;0.00;0.00;3;;;YOYO MAQUIAMOR
+27;Massage Fascial Gun - LM-810T;Equipamentos;97.80;1.20;15.00;18.00;10.00;3;;;J A Produtos
+28;Massageador Inteligente Viccoli - Pulso Calmante + Calor + Vibração;Equipamentos;153.90;1.20;22.00;18.00;20.00;2;;;Viccoli
+29;Mini Prancha de Cabelo Make Time - Portátil 160°C (20W);;13.50;0.00;0.00;0.00;0.00;12;;;
+30;Escova Dental Elétrica Ultrassônica IPX7 - BaiHuo City;Equipamentos;62.70;0.15;20.00;7.00;5.00;6;;;BaiHuo City
+31;Massage Gun - Pistola de Massagem Muscular;Equipamentos;66.50;1.20;8.00;18.00;20.00;4;;;J A Produtos
+32;Massageador Elétrico de Pescoço B-MAX - BM-F1144;Equipamentos;205.20;1.20;18.00;25.00;10.00;2;;;B-MAX
+33;Doppler Fetal JSL-T501 - Para ouvir o batimento cardíaco do bebê;Equipamentos;60.80;0.30;17.00;7.00;10.00;5;;;JSL
+34;;;60.80;0.30;17.00;7.00;10.00;1;;;
+35;Fita Bandagem Kinésio - Sport & Therapy (5cm x 5m);Insumos Hospitalares;19.00;0.05;7.00;7.00;3.00;19;;;J A Produtos
+36;Irrigador Bucal Portátil - Portable Oral Irrigator;Equipamentos;53.20;0.30;22.00;6.00;6.00;4;;;
+37;Escova Massageadora para Couro Cabeludo - Verde - UNISO;Insumos Hospitalares;19.00;0.10;15.00;10.00;5.00;3;;;UNISO
+38;;;19.00;0.10;15.00;10.00;5.00;3;;;
+39;Depilador Feminino 4 em 1 B-MAX - Recarregável - Modelo BM-C072;Equipamentos;40.50;0.30;18.00;8.00;5.00;4;;;B-MAX
+40;Oxímetro Digital de Dedo - Monitor de Saturação de Oxigênio (SpO2) e Frequência Cardíaca - Tela LED, Portátil e de Fácil Utilização.;Equipamentos;38.00;0.10;10.00;5.00;7.00;5;;;
+41;Dreno Penrose Silicone Estéril - 1un;;13.50;0.00;0.00;0.00;0.00;3;;;Wellead
+42;;;15.50;0.00;0.00;0.00;0.00;3;;;
+43;;;16.50;0.00;0.00;0.00;0.00;3;;;
+44;Equipo de Infusão Gravitacional Macrogotas - BECARE (Luer Slip) - 10un;;17.00;0.00;0.00;0.00;0.00;1;;;BECARE
+45;Bolsa de Colostomia Waltex 40 mm - Pacote com 10 unidades;;10.80;0.00;0.00;0.00;0.00;8;;;Waltex
+46;Bolsa de Colostomia Waltex 50 mm - Pacote com 10 unidades;;12.20;0.00;0.00;0.00;0.00;8;;;Waltex
+47;Bolsa de Colostomia Waltex 60 mm - Pacote com 10 unidades;;12.20;0.00;0.00;0.00;0.00;8;;;Waltex
+48;MedTeste Influenza A+B H1N1 Teste Rápido C/25 MedLEVENSOHN;;290.00;0.00;0.00;0.00;0.00;2;;;MedLevensohn
+49;Teste Rápido Multidrogas 7 - MedLevensohn - CX C/25 MedTeste;;501.40;0.00;0.00;0.00;0.00;2;;;MedLevensohn
+50;Teste Rápido RSV - MedLevensohn - CX C/25 MedTeste;;379.70;0.00;0.00;0.00;0.00;3;;;medlevensohn
+51;Teste Rápido PSA - MedLevensohn - CX C/ 25 MedTeste;;115.70;0.00;0.00;0.00;0.00;3;;;medlevensohn
+52;Teste Rápido HIV - MedLevensohn - CX C/25 MedTeste;;55.30;0.00;0.00;0.00;0.00;0;;;medlevensohn
+53;Tiras para Glicose On Call Plus II - Caixa com 50 unidades;;30.55;0.00;0.00;0.00;0.00;0;;;medlevensohn
+54;Fralda Descartável Infantil - Super Kisses (G) (PCT COM 8UN);;7.24;0.00;0.00;0.00;0.00;6;;;
+55;Fralda Descartável Infantil - Super Kisses (M) (PCT COM 9UN);;7.42;0.00;0.00;0.00;0.00;4;;;
+56;TESTE RÁPIDO DE GRAVIDEZ - WAMO (CX COM 80 TIRAS);;51.68;0.00;0.00;0.00;0.00;5;;;wama
+57;SCALP DESCARTÁVEL PARA COLETA DE SANGUE A VÁCUO - 25G (Labor Import);;130.00;0.00;0.00;0.00;0.00;2;;;labor import
+58;Scalp Coleta Sangue A Vácuo 23g Labor Com 100 Unidades;;120.00;0.00;0.00;0.00;0.00;2;;;labor import
+59;Campo Operatorio 25Cmx28Cm C/ Radiopaco Esteril 15G Dione Amed;;0.00;0.00;0.00;0.00;0.00;58;;;
+60;ÓCULOS DE PROTEÇÃO - DELTA PLUS (Modelo SKY);EPI;0.00;0.00;0.00;0.00;0.00;24;;;Delta Plus
+61;MEDIDOR DE GLICOSE NO SANGUE G TECH;EPI, Insumos Hospitalares, Equipamentos;0.00;0.00;0.00;0.00;0.00;10;;;G-tech
+62;Lâmina P/ Bisturi Aço Carbono Nº 24 - Solidor;;33.22;0.00;0.00;0.00;0.00;5;;;
+63;Lâmina de Bisturi - Aço Carbono 100un - Medix;;37.08;0.00;0.00;0.00;0.00;29;;;MEDIX
+64;Cimento Cirurgico Pó 50g - Maquira;;36.42;0.00;0.00;0.00;0.00;8;;;maquira
+65;AGULHA PARA ANESTESIA ESPINHAL 22G X 3 ½ - PROCARE;;124.04;0.00;0.00;0.00;0.00;3;;;procare
+66;CATETER INTRAVENOSOV FEP 20G - SOLIDOR;;50.32;0.00;0.00;0.00;0.00;14;;;
+67;MICRODISSECTOR HORTRON RETO 110 X 2,5 MM;;134.93;0.00;0.00;0.00;0.00;2;;;
+68;MICRODISSECTOR HORTRON RETO 135 X 2,6 MM;;134.93;0.00;0.00;0.00;0.00;4;;;
+69;MICRODISSECTOR HORTRON RETO 52 X 2,5 MM;;134.93;0.00;0.00;0.00;0.00;3;;;
+70;Agulha Hipodérmica Descartável Estéril 18G x 1 1/2 - MEDIX;;15.83;0.00;0.00;0.00;0.00;1;;;
+71;Agulha Hipodérmica Descartável Estéril 24G x 3/4 - MEDIX;;13.14;0.00;0.00;0.00;0.00;1;;;
+72;LUVA PARA PROCEDIMENTO NÃO CIRURGICO SEM PÓ TAM P 100UN - SUPERMAX;;47.00;0.00;0.00;0.00;0.00;6;;;
+73;Lençol de Papel Hospitalar Sem Picote Leflex-Extra BEMMED (50Cmx50M);;18.36;0.00;0.00;0.00;0.00;1;;;
+74;LUVA PARA PROCEDIMENTO NÃO CIRURGICO COM PÓ TAM G - COM 100UN - TALGE;;28.49;0.00;0.00;0.00;0.00;2;;;
+75;LUVA PARA PROCEDIMENTO NÃO CIRURGICO COM PÓ TAM M - COM 100UN - TALGE;;36.44;0.00;0.00;0.00;0.00;7;;;
+76;Máscara de Proteção N95 PFF2 Descarpack com 20 Unidades;;20.82;0.00;0.00;0.00;0.00;2;;;
+77;LUVA PARA PROCEDIMENTO NÃO CIRURGICO COM PÓ TAM P - COM 100UN - TALGE;;33.67;0.00;0.00;0.00;0.00;6;;;
+78;Curativo Redondo Bege Adulto Blood Stop Caixa C/500 Unidades - Medix;;17.55;0.00;0.00;0.00;0.00;20;;;
+79;LUVA DE LATEX PARA PROCEDIMENTO NÃO CIRURGICO COM PÓ - TAM M 100UN - INOVEN;;21.74;0.00;0.00;0.00;0.00;1;;;
+80;LUVAS NITRÍLICAS PARA PROCEDIMENTOS NÃO CIRURGICOS SEM PÓ - TAM M 100UN - DESCARPACK;;27.00;0.00;0.00;0.00;0.00;14;;;
+81;LUVAS DE VINIL COM PÓ TAM M - 100UN - DESCARPACK;;16.62;0.00;0.00;0.00;0.00;1;;;
+82;LUVAS DE LATEX PARA PROCEDIMENTOS NÃO CIRURGICOS TAM M - COM PÓ - 100UN - DESCARPACK;;28.40;0.00;0.00;0.00;0.00;13;;;
+83;LUVA PARA PROCEDIMENTO NÃO CIRURGICO TAM M COM 100 UN - MEDIX;;25.30;0.00;0.00;0.00;0.00;6;;;
+84;LUVA PARA PROCEDIMENTO NÃO CIRURGICO TAM P COM 100 UN - MEDIX;;33.54;0.00;0.00;0.00;0.00;1;;;
+85;ESPONJAS JABONOSAS HIGIEMED 12X 20 X 1 CM;;52.04;0.00;0.00;0.00;0.00;2;;;
+86;Agulha Hipodérmica Descartável 40x1,20MM (18Gx1 1/2) - Solidor;;8.26;0.00;0.00;0.00;0.00;10;;;
+87;Compressa de Gaze Tela 7,5X7,5Cm C/500Un NEVE (11-Fios) - ABERTA;;53.54;0.00;0.00;0.00;0.00;3;;;
+88;Agulha Hipodérmica 25x0,70mm (22Gx1) - cx c/ 100 Un - MEDIX;;9.65;0.00;0.00;0.00;0.00;20;;;
+89;MÁSCARA CIRÚRGICA DESCARTÁVEL COM 50UN - HNDESC;;15.60;0.00;0.00;0.00;0.00;2;;;
+90;Máscara KN95 3D - 5 Dobras | 25 Unidades;;0.00;0.00;0.00;0.00;0.00;2;;;
+91;ABAIXADOR DE LINGUA COM 100UN - MEDIX;;12.38;0.00;0.00;0.00;0.00;5;;;
+92;MANOPLA JABONOSA GANTNET;;0.00;0.00;0.00;0.00;0.00;18;;;
+93;MASCARA CIRURGICA TRIPLA ELASTICO - TALGE;;12.25;0.00;0.00;0.00;0.00;81;;;
+94;Termômetro de Testa NX-2000;;45.66;0.00;0.00;0.00;0.00;12;;;
+95;Esfigmomanometro com Fecho em Metal - Solidor;;139.45;0.00;0.00;0.00;0.00;3;;;
+96;ESFIGMOMANÔMETRO ANEROIDE - FECHO VELCRO - SOLIDOR 0-300mmHg;;110.45;0.00;0.00;0.00;0.00;2;;;
+97;Estetoscópio Duplo - SOLIDOR;;18.49;0.00;0.00;0.00;0.00;2;;;
+98;;;18.49;0.00;0.00;0.00;0.00;2;;;
+99;;;18.49;0.00;0.00;0.00;0.00;2;;;
+100;;;18.49;0.00;0.00;0.00;0.00;2;;;
+101;;;18.49;0.00;0.00;0.00;0.00;2;;;
+102;Filme Transparente em Rolo - Vital Derme 10cm x 10cm;;82.31;0.00;0.00;0.00;0.00;10;;;
+103;Fio Agulhado Nylon Monofilamento Preto - Supermedy (24 unid.);;45.00;0.00;0.00;0.00;0.00;;;;
+104;POLIGLACTINA 910 VIOLETA - 70 cm - 1/2 CIR. CIL. 3.5 cm 36un;;0.00;0.00;0.00;0.00;0.00;;;;
+105;Fio de Sutura Categute Simples 3-0 Absorvível 24Un TECHNOFIO (Ag-1/2-20Mm);;0.00;0.00;0.00;0.00;0.00;3;;;
+106;Fio Agulhado Nylon Monofilamento Preto Triang C/24Un PROCARE;;0.00;0.00;0.00;0.00;0.00;4;;;
+107;SORO FISIOLOGICO 0,9% 500ML BOLSA JPFARMA;Insumos Hospitalares;8.24;0.00;0.00;0.00;0.00;0;;;JPFARMA
+108;Soro Fisiológico Estéril Bolsa 0,9% (250 mL);Insumos Hospitalares;6.87;0.00;0.00;0.00;0.00;0;;;JPFARMA
+109;SORO FISIOLOGICO 0,9% 100ML BOLSA JPFARMA;Insumos Hospitalares;5.34;0.00;0.00;0.00;0.00;0;;;jpfarma
+110;SCALP 25G ASEPTO BD;Insumos Hospitalares;198.40;0.00;0.00;0.00;0.00;0;;;
+111;SCALP 23G ASEPTO BD;Insumos Hospitalares;193.75;0.00;0.00;0.00;0.00;0;;;
+112;RINGER C/ LACTATO SODIO 500 ML EQUIPLEX;Insumos Hospitalares;5.00;0.00;0.00;0.00;0.00;0;;;
+113;MÁSCARA PFF2 SEM VÁLVULA PRO SAFETY DELTA PLUS;EPI > Máscara Descartável, Insumos Hospitalares;4.26;0.00;0.00;0.00;0.00;0;;;delta plus
+114;LUVA SEM PÓ NITRILICA AZUL TAM. G COM 10 UN/CX COM 100 - MEDIX;EPI > Máscara Descartável, Insumos Hospitalares;24.80;0.00;0.00;0.00;0.00;0;;;MEDIX
+115;LUVA NITRILICA AZUL M CX COM 10 UN - MEDIX;EPI > Máscara Descartável, Insumos Hospitalares;25.92;0.36;24.50;12.50;4.00;0;;;MEDIX
+116;LAMINA LAPIDADA FOSCA 26 X 76 C/50 POR CX (Precision) CRAL;Insumos Hospitalares;182.59;0.00;0.00;0.00;0.00;0;;;cral
+117;GLICOSE 5% S.F 500M HALEXISTAR;Insumos Hospitalares;11.79;0.00;0.00;0.00;0.00;0;;;
+118;EQUIPO DE TRANSFUSÃO DE SANGUE - LABOR IMPORT;Insumos Hospitalares;5.36;0.00;0.00;0.00;0.00;0;;;
+119;EQUIPO DE INFUSÃO MACROGOTAS 15 CM PCT COM 25 UN - LABOR IMPORT;Insumos Hospitalares;36.58;0.00;0.00;0.00;1.50;0;;;
+120;CLORETO DE SÓDIO 0,9% SF 500ML HALEX ISTAR;Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;0;;;
+121;APARELHO DE PRESSÃO DIGITAL AUTOMATICO DE BRAÇO - G-TECH;Insumos Hospitalares;186.00;0.49;16.00;12.00;8.50;74;;;
+122;Alcool 70% 1000ml - Cinord;Insumos Hospitalares;15.15;0.00;0.00;0.00;0.00;0;;;
+123;AVENTAL/ JALECO PCT COM 10 UN ASSEPTICO;EPI > Ávental, Insumos Hospitalares;15.35;0.00;0.00;0.00;0.00;0;;;
+124;ALMOTOLIA 125ml AMBAR BICO RETO - J PROLAB;Insumos Hospitalares;5.19;0.00;0.00;0.00;0.00;110;;;
+125;ALMOTOLIA 250ml AMBAR J PROLAB;Insumos Hospitalares;6.61;0.00;0.00;0.00;0.00;45;;;
+126;AGULHA PARA ANESTESIA ESPINHAL (HACK) 25 UN POR CX - LABOR IMPORT;Insumos Hospitalares;105.01;0.00;0.00;0.00;0.00;0;;;
+127;AGULHA HIPODERMICA 40X12 (TRIFACETADA) 100 UN POR CX;Insumos Hospitalares;10.11;0.00;0.00;0.00;0.00;0;;;descarpack
+128;Agulha Para Coleta de Sangue a Vácuo 25x0,80MM (21Gx1) - Labor Import;Insumos Hospitalares;63.82;0.00;0.00;0.00;0.00;60;;;
+129;Cateter Periférico Intravenoso 20G Caixa C/100 Unidades - Descarpack;Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;0;;;
+130;CROSSLINKING DE CORNEA ILLUMINIX;Insumos Hospitalares, Equipamentos;0.00;0.00;0.00;0.00;0.00;1;;;
+131;Coletor Para Material Perfuro Cortante 13L - Descarbox;Insumos Hospitalares;6.05;0.00;0.00;0.00;0.00;0;;;DESCARBOX
+132;Cateter Periférico Intravenoso 22G Caixa C/100 Unidades - Descarpack;Insumos Hospitalares;254.00;0.00;0.00;0.00;0.00;0;;;DESCARPACK
+133;Torneira 3 Vias Luer Lock - Descarpack;Insumos Hospitalares;57.50;0.00;0.00;0.00;0.00;0;;;DESCARPACK
+134;ATADURA DE ALGODAO ORTOPÉDICO - PolarFix Cor Branco;Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;;;;Polarfix
+135;Compressa de Gaze Hidrófila em rolo 11F - tipo queijo (PolarFix);Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;24;;;Polarfix
+136;COMPRESSA DE GAZE 7,5 X 7,5 13F CROCHE PCT C/500 POLARFIX;Insumos Hospitalares;38.04;0.00;0.00;0.00;0.00;70;;;Polarfix
+137;Compressa de Gaze Não Estéril 7,5x7,5 09F C/500 - POLARFIX;Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;;;;Polarfix
+138;BECKER - SCHOTT;Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;0;;;SCHOTT
+139;Copo Becker em Vidro - GRIFFIN;Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;;;;GRIFFIN
+140;;;0.00;0.00;0.00;0.00;0.00;;;;
+141;MICROPIPETA MONOCANAL;Insumos Hospitalares;766.61;0.18;4.00;28.00;8.00;0;IND0408;;CRAL
+142;Kit Accu-Chek Active com 10 tiras;Equipamentos;0.00;0.00;0.00;0.00;0.00;34;;;Accu-Chek
+143;Esparadrapo Branco 10cm X 4,5m - ADPELE Missner;Insumos Hospitalares;13.35;0.00;0.00;0.00;0.00;230;;;Missner
+144;ADAPTADOR PARA AGULHA MULTIPLA DE SANGUE a vácuo e tubos de 13mm a 16mm;Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;81;;;LABOR IMPORT
+145;Neolfrin 20 mg;Medicamento > Para gripe e resfriado;12.50;0.00;0.00;0.00;0.00;25;;;
+146;Touca Descartável - HNDESC;EPI, Insumos Hospitalares;11.90;0.51;35.00;25.00;25.00;40;;;
+147;Estetoscópio Duplo Duplo - Solidor;Equipamentos > Esfigmomanometro;12.99;0.70;35.00;25.00;25.00;2;;;
+148;;;12.99;0.70;35.00;25.00;25.00;2;;;
+149;;;12.99;0.70;35.00;25.00;25.00;2;;;
+150;;;12.99;0.70;35.00;25.00;25.00;2;;;
+151;;;12.99;0.70;35.00;25.00;25.00;2;;;
+152;Esfigmomanometro Fecho Metal - Solidor;Equipamentos > Esfigmomanometro;75.00;0.56;35.00;25.00;25.00;3;;;Solidor - Labor Import
+153;Coletores Perfuro-Cortantes Papelão - 03 litros Descarpack;Insumos Hospitalares;2.99;0.65;50.00;30.00;25.00;40;;;
+154;Luva de Látex para Procedimentos Não Cirúrgicos Com Pó Talge com 100 uni - (G);EPI > Luvas Descartáveis, Insumos Hospitalares;19.50;0.25;35.00;25.00;25.00;12;;;TALGE
+155;Luva Látex Com Pó Medix Brasil - Caixa com 100 un. (G);EPI > Luvas Descartáveis, Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;7;;;
+156;Luva Látex Com Pó Medix Brasil Tam. (M) - Caixa com 100 un.;EPI > Luvas Descartáveis;0.00;0.00;0.00;0.00;0.00;60;;;
+157;Cateter de Segurança Intravenoso Periférico 22G x 25mm/descarpack;Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;0;;;
+158;Equipo Microgotas Labor Import por gravidade estéril;Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;0;;;
+159;Sonda Uretral nº 12 - Medsonda;Insumos Hospitalares;0.80;0.00;0.00;0.00;0.00;0;;;MEDSONDA
+160;Seringa Hipodérmica Sem Agulha Descarpack - 20 ml - Luer Slip;Insumos Hospitalares;24.00;0.40;35.00;25.00;25.00;48;;;DESCARPACK
+161;Filtro Bacteriano Hepa (Becare) - Ventilação Mecânica;Insumos Hospitalares;25.50;0.40;35.00;25.00;25.00;15;;;BECARE
+162;Luva Nitrílica Cor Azul Sem Pó - Tamanho P - C/100 Unidades MEDIX;EPI > Luvas Descartáveis, Insumos Hospitalares;24.90;0.00;0.00;0.00;0.00;25;;;MEDIX
+163;Luva de Látex para Procedimentos Não Cirúrgicos Com Pó Talge com 100 uni - (M);EPI > Luvas Descartáveis, Insumos Hospitalares;13.50;0.25;35.00;25.00;25.00;33;;7,89E+12;TALGE
+164;Coletor Universal 70ml Esteril C/tampa - J.PROLAB;Insumos Hospitalares;0.75;0.20;35.00;25.00;25.00;;;7,89E+12;JPROLAB
+165;Luva de Látex para Procedimentos Não Cirúrgicos Com Pó Talge com 100 uni - (P);EPI > Luvas Descartáveis, Insumos Hospitalares;8.00;0.25;35.00;25.00;25.00;46;;7,89E+12;TALGE
+166;Luva Nitrílica de Procedimento Sem Pó Cor Azul 100un MEDIX (M);EPI > Luvas Descartáveis, Insumos Hospitalares;29.45;0.34;24.50;12.50;4.00;0;;7,89E+12;MEDIX
+167;Agulha Hipodérmica Descartável Estéril 100 Unidades MEDIX (25x0,70mm(preto)22gx1);Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;30;;7,89112E+12;MEDIX
+168;Agulha Hipodérmica Descartável Estéril 100 Unidades MEDIX (25x0,80mm(verde)21gx1);Insumos Hospitalares;0.00;0.00;0.00;0.00;0.00;50;;7,89112E+12;MEDIX
+169;Máscara Descartável Branca Com Elástico - Cartucho c/ 50 - Labor Import;EPI > Máscara Descartável, Insumos Hospitalares;8.00;0.25;35.00;25.00;25.00;19;;;LABOR IMPORT
+170;Máscara Cirúrgica Descartável com Elástico - Cartucho com 50 unidades - HNDESC;EPI > Máscara Descartável, Insumos Hospitalares;11.90;0.25;35.00;25.00;25.00;37;;7,89E+12;HNDESC
+171;Máscara Respiratória PFF2 Sem Válvula Pro Agro Delta Plus;EPI > Máscara Descartável, Insumos Hospitalares;0.99;0.25;35.00;25.00;25.00;1200;;7,89E+12;DELTA PLUS
+172;Equipo Nutrição Enteral Slip;Insumos Hospitalares;1.80;0.00;0.00;0.00;0.00;0;;7,89112E+12;
+173;Equipo Macrogotas Flexível Completo;Insumos Hospitalares;36.00;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+174;Dispositivo Para Transferência de Soluções - Ponta Dupla;Insumos Hospitalares;37.94;0.00;0.00;0.00;0.00;0;;7,89112E+12;
+175;Dispositivo de Transferência de Soluções - Ponta Simples Lock;Insumos Hospitalares;37.94;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+176;Ponta Simples Slip - Dispositivo de Transferência de Soluções;;37.94;0.00;0.00;0.00;0.00;0;;;
+177;Coletores Quimioterapicos (Branco) - 13 litros Descarpack;EPI;68.27;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+178;Coletores Quimioterapicos (Branco) - 07 litros Descarpack;EPI;37.55;0.00;0.00;0.00;0.00;0;;7,89112E+12;
+179;Coletores Perfuro-Cortantes Papelão - 13 litros Descarpack;EPI;47.80;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+180;Coletor Para Material Perfuro Cortante 7L - Descarbox;Insumos Hospitalares;4.50;0.80;35.00;25.00;25.00;0;;;
+181;Coletores Perfuro-Cortantes Papelão - 1,5 litros Descarpack;EPI;10.86;0.00;0.00;0.00;0.00;0;;7,89112E+12;
+182;Cateter Nasal Tipo Óculos Para Oxigênio 150 cm Adulto;Insumos Hospitalares;1.99;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+183;Cateter Periférico Intravenoso com Dispositivo de Segurança Descarpack - 24G Amarelo;Insumos Hospitalares;292.00;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+184;Cateter Periférico Intravenoso com Dispositivo de Segurança Descarpack - 22G Azul;Insumos Hospitalares;279.00;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+185;Cateter Periférico Intravenoso com Dispositivo de Segurança Descarpack - 20G Rosa;Insumos Hospitalares;179.00;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+186;Cateter Periférico Intravenoso com Dispositivo de Segurança Descarpack - 18G Verde;Insumos Hospitalares;179.00;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+187;Cateter Periférico Intravenoso com Dispositivo de Segurança Descarpack - 16G Cinza;Insumos Hospitalares;279.00;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+188;Cateter Periférico Intravenoso com Dispositivo de Segurança Descarpack - 14G Laranja;Insumos Hospitalares;279.00;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+189;Cateter Periférico Intravenoso Descarpack - 24G Amarelo;Insumos Hospitalares;110.00;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+190;Cateter Periférico Intravenoso Descarpack - 22G Azul;Insumos Hospitalares;110.00;0.47;10.50;16.50;13.50;0;;7,89112E+12;DESCARPACK
+191;Cateter Periférico Intravenoso Descarpack - 20G Rosa;Insumos Hospitalares;110.00;0.47;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+192;Cateter Periférico Intravenoso Descarpack - 18G Verde;Insumos Hospitalares;110.00;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+193;Cateter Periférico Intravenoso Descarpack - 16G Cinza;Insumos Hospitalares;110.00;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+194;Cateter Periférico Intravenoso Descarpack - 14G Laranja;Insumos Hospitalares;110.00;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+195;Cânula de Guedel Estéril Descartável Descarpack Tamanho 6 (120mm);Insumos Hospitalares;1.90;0.00;0.00;0.00;0.00;0;;;
+196;Cânula de Guedel Estéril Descartável Descarpack Tamanho 5 (110mm);Insumos Hospitalares;1.90;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+197;Cânula de Guedel Estéril Descartável Goodcome Tamanho 4 (100mm);Insumos Hospitalares;3.50;0.00;0.00;0.00;0.00;40;;7,89112E+12;
+198;Cânula de Guedel Estéril Descartável Descarpack - Tamanho 3 (90mm);Insumos Hospitalares;1.90;0.00;0.00;0.00;0.00;0;;7,89112E+12;
+199;Cânula de Guedel Estéril Descartável Descarpack Tamanho 2 (80mm);Insumos Hospitalares;1.90;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+200;Cânula de Guedel Estéril Descartável Descarpack Tamanho 1 (70mm);Insumos Hospitalares;1.90;0.00;0.00;0.00;0.00;0;;7,89112E+12;
+201;Cânula de Guedel Estéril Descartável Descarpack Tamanho 0 (60mm);Insumos Hospitalares;1.90;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+202;Cânula de Guedel Estéril Descartável Descarpack Tamanho 00 (50mm);Insumos Hospitalares;1.90;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+203;Cânula de Guedel Estéril Descartável Descarpack Tamanho 000 (40mm);Insumos Hospitalares;1.90;0.00;0.00;0.00;0.00;0;;7,89112E+12;DESCARPACK
+204;Bolsa Coletora Urina Labor Import - 2l Sistema Fechado;Insumos Hospitalares;6.15;0.00;0.00;0.00;0.00;0;;;DESCARPACK
+205;Avental falso tecido - Polipropileno TNT - Avental Cirurgico Reforçado XL 45g;;24.15;0.00;0.00;0.00;0.00;0;;;
+206;Avental falso tecido - Polipropileno TNT - Avental Cirurgico Reforçado L 45g;;22.24;0.00;0.00;0.00;0.00;0;;;
+207;Avental falso tecido - Polipropileno TNT - Avental Cirurgico STD XL 40g;;20.63;0.00;0.00;0.00;0.00;0;;;
+208;Avental falso tecido - Polipropileno TNT - Avental Cirurgico STD L 40g;;17.28;0.00;0.00;0.00;0.00;0;;;
+209;Avental falso tecido - Polipropileno TNT - Avental Procedimento Especial 30g (Compr. 120cm - Larg. 140cm);;3.95;0.00;0.00;0.00;0.00;0;;;
+210;Avental falso tecido - Polipropileno TNT - Avental Procedimento Especial 16g (Compr. 100cm - Larg. 135cm);;2.25;0.00;0.00;0.00;0.00;0;;;
+211;Adaptado a Vacuo - Agulha Geng Curta Des Est 21X0,30MM 30G;;49.44;0.00;0.00;0.00;0.00;0;;;
+212;Agulha Caneta de Insulina - Agulha desc 4x0,23mm Caneta de Insulina;;35.94;0.00;0.00;0.00;0.00;0;;;
+213;Agulhas Hipodérmica Descartavel - 40x1.2(18G 1 1/2) Rosa;Insumos Hospitalares;14.20;0.25;35.00;25.00;25.00;0;;;
+214;Agulhas Hipodérmica descartável - 30x0.7 (22G 1 1/4) Cinza;;11.46;0.00;0.00;0.00;0.00;0;;;
+215;Agulhas Hipodérmica descartável - 25x0.8 (21G 1) Verde;;11.46;0.00;0.00;0.00;0.00;0;;;
+216;Agulhas Hipodérmica Descartavel - 13x0.45 (26G1/2) Marrom;;11.46;0.00;0.00;0.00;0.00;0;;;
+217;Adaptador de Coleta Múltipla a Vácuo Descarpack;;26.00;0.00;0.00;0.00;0.00;0;;;
+218;Agulha Para Coleta de Sangue a Vácuo 21G;;0.00;0.00;0.00;0.00;0.00;0;;;
+219;Termômetro Infravermelho de Testa - Solidor;Equipamentos > Termômetro;30.00;0.35;35.00;25.00;25.00;10;;;
