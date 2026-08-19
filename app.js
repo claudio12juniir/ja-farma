@@ -149,8 +149,8 @@ console.log(res);
                 // 3. Injeta um HTML estilizado direto no elemento
                 elGreeting.innerHTML = `
                     <span style="font-size: 1.2rem; margin-right: 5px;">${icone}</span>
-                    <span style="color: #64748b; font-weight: 400; font-size: 1.1rem;">${textoSaudacao},</span> 
-                    <strong style="color: #1e293b; font-size: 1.1rem; letter-spacing: 0.5px;">${primeiroNome}</strong>!
+                    <span style="color: var(--slate-500); font-weight: 400; font-size: 1.1rem;">${textoSaudacao},</span>
+                    <strong style="color: var(--slate-900); font-size: 1.1rem; letter-spacing: 0.5px;">${primeiroNome}</strong>!
                 `;
             }
 
@@ -269,12 +269,12 @@ function renderizarEstoque(lista) {
         const prodJson = JSON.stringify(prod).replace(/'/g, "&#39;");
         tbody.innerHTML += `
             <tr>
-                <td><strong>${prod.nome}</strong><br><small style="color:#666">${prod.codigo_barras || ''}</small></td>
+                <td><strong>${prod.nome}</strong><br><small style="color:var(--slate-500)">${prod.codigo_barras || ''}</small></td>
                 <td style="text-align:center;"><span class="badge ${prod.qtd_estoque > 0 ? 'badge-verde':'badge-amarelo'}">${prod.qtd_estoque} un</span></td>
                 <td style="text-align:right">R$ ${Number(prod.preco_custo).toFixed(2)}</td>
                 <td style="text-align:right">R$ ${Number(prod.preco_venda).toFixed(2)}</td>
                 <td>${anvisa}</td>
-                <td style="text-align:right"><button class="btn-primary" style="padding:5px 10px" onclick='abrirModalProduto(${prodJson})'>✏</button></td>
+                <td style="text-align:right"><button class="btn-primary btn-sm" onclick='abrirModalProduto(${prodJson})'>✏</button></td>
             </tr>`;
     });
 }
@@ -368,7 +368,7 @@ async function processarAnaliseIA() {
         // CENÁRIO 1: Novo Pedido do Cliente (Tem PDF no campo 1)
         if (fileBase) {
             console.log("Modo: Leitura Inicial do Cliente");
-            const leitura = await window.api.readPdfs(fileBase.path);
+            const leitura = await window.api.readPdfs(window.api.getPathForFile(fileBase));
             txtBase = leitura[0].texto;
             modoAnalise = "INICIAL";
         } 
@@ -392,7 +392,7 @@ async function processarAnaliseIA() {
         // --- LEITURA DOS FORNECEDORES (SE HOUVER) ---
         let txtForn = "";
         if (filesFornecedores.length > 0) {
-            const paths = Array.from(filesFornecedores).map(f => f.path);
+            const paths = Array.from(filesFornecedores).map(f => window.api.getPathForFile(f));
             const resForn = await window.api.readPdfs(paths);
             txtForn = resForn.map(r => r.texto).join("\n");
         }
@@ -468,7 +468,7 @@ async function processarAnaliseIA() {
                 <td style="text-align:center;">${item.qtd}</td>
                 <td style="text-align:center;">${status}</td>
                 <td style="text-align:right;">
-                    <small style="color:#64748b">Ref: R$ ${precoReferencia.toFixed(2)}</small><br>
+                    <small style="color:var(--slate-500)">Ref: R$ ${precoReferencia.toFixed(2)}</small><br>
                     <strong>${displayPreco}</strong>
                 </td>
             </tr>`;
@@ -485,9 +485,9 @@ async function processarAnaliseIA() {
         let botoesHtml = "";
 
         if (temItemFaltante) {
-            botoesHtml += `<button class="btn-primary" onclick="gerarPDFSolicitacaoFornecedor()" style="background: #f59e0b; margin-right: 10px;">📄 PDF Para Fornecedores (Sem Preços)</button>`;
+            botoesHtml += `<button class="btn-primary btn-warning" onclick="gerarPDFSolicitacaoFornecedor()" style="margin-right: 10px;">📄 PDF Para Fornecedores (Sem Preços)</button>`;
         }
-        botoesHtml += `<button class="btn-primary" onclick="finalizarCotacaoEBanco()" style="background: #1677ff;">✅ Gerar Proposta Cliente</button>`;
+        botoesHtml += `<button class="btn-primary" onclick="finalizarCotacaoEBanco()">✅ Gerar Proposta Cliente</button>`;
 
         document.getElementById("msg-resumo-estoque").innerHTML = `
             <div style="display:flex; justify-content: flex-end; margin-top:15px;">
@@ -602,12 +602,12 @@ async function carregarHistorico() {
                 <td><span class="badge ${cor}">${c.status}</span></td>
                 <td style="text-align: right;" onclick="event.stopPropagation()">
                     
-                    <button onclick="abrirModalFeedback(${c.id})" class="btn-primary" style="padding:4px 8px; font-size:1rem; background:none; border:none; cursor:pointer;" title="Escrever Feedback">🖊️</button>
-                    <button onclick="alterarStatus(${c.id}, 'VENDIDA')" class="btn-primary" style="padding:5px 10px; font-size:0.8rem; background:#10b981;" title="Marcar como Vendida">💲</button>
-                    
-                    <button onclick="excluirCotacao(${c.id})" class="btn-primary" style="padding:5px 10px; font-size:0.8rem; background:#ef4444;" title="Excluir Permanentemente">✖</button>
-                    
-                    <button onclick='reimprimirPDF(${JSON.stringify(c).replace(/'/g, "&#39;")})' class="btn-primary" style="padding:5px 10px; font-size:0.8rem; background:#3b82f6;" title="Ver PDF">📄</button>
+                    <button onclick="abrirModalFeedback(${c.id})" class="btn-primary btn-icon" title="Escrever Feedback">🖊️</button>
+                    <button onclick="alterarStatus(${c.id}, 'VENDIDA')" class="btn-primary btn-sm btn-success" title="Marcar como Vendida">💲</button>
+
+                    <button onclick="excluirCotacao(${c.id})" class="btn-primary btn-sm btn-danger" title="Excluir Permanentemente">✖</button>
+
+                    <button onclick='reimprimirPDF(${JSON.stringify(c).replace(/'/g, "&#39;")})' class="btn-primary btn-sm btn-info" title="Ver PDF">📄</button>
                 </td>
             </tr>`;
         });
@@ -652,15 +652,15 @@ async function carregarCotacaoParaEdicao(id) {
             <td style="padding:12px"><b>${item.item}</b><br><small>${item.origem}</small></td>
             <td style="text-align:center;">${item.qtd}</td>
             <td style="text-align:center;">${item.status}</td>
-            <td style="text-align:right;"><small style="color:#64748b">Ref: ${precoRef}</small><br><strong>R$ ${item.custoUnit.toFixed(2)}</strong></td>
+            <td style="text-align:right;"><small style="color:var(--slate-500)">Ref: ${precoRef}</small><br><strong>R$ ${item.custoUnit.toFixed(2)}</strong></td>
         </tr>`;
     });
 
     document.getElementById("status-estoque").style.display = "block";
     document.getElementById("msg-resumo-estoque").innerHTML = `
         <div style="display:flex; gap:10px; justify-content: flex-end; margin-top:15px;">
-            <button class="btn-primary" onclick="gerarPDFSolicitacaoFornecedor()" style="background: #f59e0b;">📦 PDF Fornecedor</button>
-            <button class="btn-primary" onclick="finalizarCotacaoEBanco()" style="background: #10b981;">✅ Gerar Tabela Cliente</button>
+            <button class="btn-primary btn-warning" onclick="gerarPDFSolicitacaoFornecedor()">📦 PDF Fornecedor</button>
+            <button class="btn-primary btn-success" onclick="finalizarCotacaoEBanco()">✅ Gerar Tabela Cliente</button>
         </div>`;
 
     showTab('aba-upload'); 
@@ -747,7 +747,7 @@ async function carregarEquipe() {
         usuarios.forEach(u => {
             const badgeClass = u.perfil === 'ADMIN' ? 'badge-azul' : 'badge-verde';
             const iconPerfil = u.perfil === 'ADMIN' ? '🛡️ ADMIN' : '👤 COLABORADOR';
-            tbody.innerHTML += `<tr><td><strong>${u.nome}</strong></td><td>${u.user}</td><td><span style="background:#f1f5f9; padding: 2px 8px; border-radius:4px; font-family: monospace;">••••••••</span></td><td><span class="badge ${badgeClass}">${iconPerfil}</span></td><td style="text-align:right"><button onclick="resetarSenhaUsuario(${u.id})" class="btn-primary" style="background:#f59e0b; padding:5px 10px; margin-right:5px;" title="Redefinir Senha">🔑</button><button onclick="excluirUsuario(${u.id})" class="btn-primary" style="background: #ef4444; padding: 5px 10px;" title="Remover Acesso">🗑 Excluir</button></td></tr>`;
+            tbody.innerHTML += `<tr><td><strong>${u.nome}</strong></td><td>${u.user}</td><td><span style="background:var(--slate-100); padding: 2px 8px; border-radius:4px; font-family: monospace;">••••••••</span></td><td><span class="badge ${badgeClass}">${iconPerfil}</span></td><td style="text-align:right"><button onclick="resetarSenhaUsuario(${u.id})" class="btn-primary btn-sm btn-warning" style="margin-right:5px;" title="Redefinir Senha">🔑</button><button onclick="excluirUsuario(${u.id})" class="btn-primary btn-sm btn-danger" title="Remover Acesso">🗑 Excluir</button></td></tr>`;
         });
     } catch (e) { console.error("Erro ao carregar equipe:", e); }
 }
@@ -903,7 +903,7 @@ async function carregarClientes(termo = '') {
                 <td><strong>${c.nome}</strong></td>
                 <td>${c.cnpj || '-'}</td>
                 <td>${c.cidade || ''}${c.cidade && c.uf ? '/' : ''}${c.uf || ''}</td>
-                <td style="text-align:right"><button onclick="excluirCliente(${c.id})" class="btn-primary" style="background:#ef4444; padding:5px 10px;" title="Remover Cliente">🗑</button></td>
+                <td style="text-align:right"><button onclick="excluirCliente(${c.id})" class="btn-primary btn-sm btn-danger" title="Remover Cliente">🗑</button></td>
             </tr>`;
         });
     } catch (e) { console.error("Erro ao carregar clientes:", e); }

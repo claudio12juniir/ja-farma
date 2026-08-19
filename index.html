@@ -79,10 +79,10 @@
                 </div>
                 <div style="display: flex; gap: 10px;">
                     <input type="file" id="input-xml" accept=".xml" style="display: none;" onchange="processarArquivoXML(this)">
-                    <button class="btn-primary" onclick="document.getElementById('input-xml').click()" style="background: #f59e0b;">📂 XML (NFe)</button>
-                    
+                    <button class="btn-primary btn-warning" onclick="document.getElementById('input-xml').click()">📂 XML (NFe)</button>
+
                     <input type="file" id="input-csv-sidicom" accept=".csv" style="display: none;" onchange="processarArquivoSidicom(this)">
-                    <button class="btn-primary" onclick="document.getElementById('input-csv-sidicom').click()" style="background: #1e40af;">🏭 CSV (SISTEMA)</button>
+                    <button class="btn-primary btn-info" onclick="document.getElementById('input-csv-sidicom').click()">🏭 CSV (SISTEMA)</button>
 
                     <button class="btn-primary" onclick="abrirModalProduto()">+ NOVO</button>
                 </div>
@@ -106,7 +106,7 @@
                     <tbody id="tabela-estoque"></tbody>
                 </table>
                 <div id="loader-estoque" style="text-align: center; padding: 20px; display: none;">
-                    <button class="btn-primary" onclick="carregarMaisProdutos()" style="background: #cbd5e1; color: #334155;">
+                    <button class="btn-primary btn-secondary" onclick="carregarMaisProdutos()">
                         ⬇ Carregar Mais Produtos
                     </button>
                 </div>
@@ -261,7 +261,7 @@
             
             <div class="dashboard-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px;">
                 <div class="chart-container" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                    <h3 style="color: #1e3a8a; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <h3 style="color: #1e3a8a; border-bottom: 1px solid var(--slate-200); padding-bottom: 10px;">
                         🔥 Top 10 - Mais Vendidos (Qtd)
                         <span style="font-size: 0.8rem; color: #64748b; font-weight: normal; float: right;">Sua Loja vs Média Mercado</span>
                     </h3>
@@ -269,7 +269,7 @@
                 </div>
 
                 <div class="chart-container" style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                    <h3 style="color: #ef4444; border-bottom: 1px solid #eee; padding-bottom: 10px;">
+                    <h3 style="color: #ef4444; border-bottom: 1px solid var(--slate-200); padding-bottom: 10px;">
                         📉 Top 10 - Oportunidades (Estoque Parado)
                         <span style="font-size: 0.8rem; color: #64748b; font-weight: normal; float: right;">Seu Preço vs Preço Mercado</span>
                     </h3>

@@ -216,6 +216,22 @@ body.not-logged #aba-login { display: block !important; width: 100%; max-width: 
 .btn-block { width: 100%; margin-top: 15px; }
 .btn-delete { border: none; padding: 10px 20px; border-radius: var(--r-sm); cursor: pointer; font-weight: bold; }
 
+/* Variantes de ação (mesma linguagem visual do btn-primary: gradiente + sombra em camadas) */
+.btn-warning { background: linear-gradient(135deg, #f59e0b, #d97706); box-shadow: 0 8px 20px rgba(245, 158, 11, 0.28); }
+.btn-warning:hover { box-shadow: 0 14px 28px rgba(245, 158, 11, 0.34); }
+.btn-success { background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 8px 20px rgba(16, 185, 129, 0.28); }
+.btn-success:hover { box-shadow: 0 14px 28px rgba(16, 185, 129, 0.34); }
+.btn-danger { background: linear-gradient(135deg, #ef4444, #dc2626); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.28); }
+.btn-danger:hover { box-shadow: 0 14px 28px rgba(239, 68, 68, 0.34); }
+.btn-info { background: linear-gradient(135deg, var(--blue-500), var(--navy-600)); }
+.btn-secondary { background: var(--slate-300); color: var(--slate-700); box-shadow: none; }
+.btn-secondary:hover { background: var(--slate-400); box-shadow: none; }
+
+/* Modificadores de tamanho para botões de ação em linha de tabela */
+.btn-sm { padding: 5px 10px; font-size: 0.8rem; }
+.btn-icon { padding: 4px 8px; font-size: 1rem; background: none; box-shadow: none; }
+.btn-icon:hover { background: rgba(15, 23, 42, 0.06); box-shadow: none; transform: none; }
+
 .badge { padding: 5px 13px; border-radius: 999px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.3px; display: inline-block; }
 .badge-verde { background: var(--green-100); color: var(--green-700); }
 .badge-amarelo { background: var(--amber-100); color: var(--amber-700); }
