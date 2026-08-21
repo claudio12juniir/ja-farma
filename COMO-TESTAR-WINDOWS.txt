@@ -2,7 +2,7 @@ Como testar o instalador do J.A Produtos Farmacêuticos no Windows
 ====================================================================
 
 Você recebeu 1 arquivo:
-- ja-farma-setup-1.0.0.exe   (o instalador)
+- ja-farma-setup-1.0.2.exe   (o instalador)
 
 O banco de dados e o backend agora rodam hospedados (Supabase + Render) —
 não precisa mais instalar MySQL nem configurar nada na máquina.
@@ -34,3 +34,14 @@ O que eu queria saber:
 4) A Cotação IA (upload de PDF) funciona?
 
 Qualquer erro, print da tela + a mensagem exata ajuda bastante.
+
+SOBRE A EMISSÃO DE NOTA FISCAL (aba "Emissão NF-e" / "Notas Fiscais")
+------------------------------------------------------------------
+Essa parte já está pronta no sistema, mas emitir uma nota de verdade
+depende de duas coisas que só dá pra fazer direto no site da NFe.io
+(nada disso é feito por aqui):
+1) Preencher os dados da empresa em Equipe > "Dados da Empresa" (CNPJ,
+   endereço, regime tributário) e clicar em "Salvar dados".
+2) A empresa precisar ter um certificado digital (e-CNPJ) cadastrado
+   na NFe.io e uma Inscrição Estadual associada a ele — sem isso a
+   NFe.io recusa qualquer emissão, é exigência da lei, não bug do app.
