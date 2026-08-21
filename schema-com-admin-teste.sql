@@ -1,5 +1,6 @@
--- Schema Postgres (Supabase). O banco/schema já existe no projeto Supabase,
--- então basta rodar isto no SQL Editor (ou via psql) uma vez.
+-- Schema Postgres (Supabase) + usuário admin de teste, pra validar o instalador
+-- numa máquina nova. Rode no SQL Editor do Supabase.
+-- Login gerado: usuário "admin", senha "Teste@2026" (troque depois pela tela Equipe).
 
 CREATE TABLE IF NOT EXISTS usuarios (
     id SERIAL PRIMARY KEY,
@@ -48,3 +49,6 @@ CREATE TABLE IF NOT EXISTS clientes (
     email VARCHAR(150),
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO usuarios (nome, "user", pass_hash, perfil)
+VALUES ('Administrador (teste)', 'admin', '$2b$10$uJrlnwR48u0saIUAYsctHODqCK6E4wXWmz5QVMCeLV4Q0lG3J2Hqm', 'ADMIN');

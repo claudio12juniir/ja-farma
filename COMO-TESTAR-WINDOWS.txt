@@ -1,0 +1,36 @@
+Como testar o instalador do J.A Produtos Farmacêuticos no Windows
+====================================================================
+
+Você recebeu 1 arquivo:
+- ja-farma-setup-1.0.0.exe   (o instalador)
+
+O banco de dados e o backend agora rodam hospedados (Supabase + Render) —
+não precisa mais instalar MySQL nem configurar nada na máquina.
+
+Login de teste:
+  usuário: admin
+  senha:   Teste@2026
+
+PASSO 1 — Instalar o app
+------------------------------------------------
+Rode o ja-farma-setup-1.0.0.exe normalmente. Se o Windows avisar
+"Windows protegeu seu PC" (SmartScreen — o instalador ainda não é
+assinado digitalmente), clique em "Mais informações" > "Executar
+assim mesmo".
+
+PASSO 2 — Abrir e testar
+------------------------------------------------
+Abra o app. Ele deve abrir uma janela (é isso que mais importa
+confirmar: SE A JANELA ABRE SEM FECHAR/CRASHAR sozinha).
+
+Faça login com:
+  usuário: admin
+  senha:   Teste@2026
+
+O que eu queria saber:
+1) A janela abre normalmente (sem fechar sozinha)?
+2) O login funciona?
+3) Dá pra navegar pelas telas (Estoque, Clientes, etc.) sem erro?
+4) A Cotação IA (upload de PDF) funciona?
+
+Qualquer erro, print da tela + a mensagem exata ajuda bastante.

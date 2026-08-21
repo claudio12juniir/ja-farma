@@ -1,5 +1,5 @@
 // NO INÍCIO DO APP.JS
-const API_URL = "http://localhost:3000";
+const API_URL = "https://ja-farma-api.onrender.com";
 // VARIÁVEIS GLOBAIS
 let listaClientes = [];
 let dadosCotacaoAtual = [];
@@ -397,9 +397,16 @@ async function processarAnaliseIA() {
             txtForn = resForn.map(r => r.texto).join("\n");
         }
 
-        // --- ENVIA PARA A IA ---
-        const itensIA = await window.api.compararCotacao({ textoBase: txtBase, textoFornecedores: txtForn });
-        
+        // --- ENVIA PARA A IA (backend hospedado) ---
+        const resIA = await apiFetch('/api/cotacao/analisar', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ textoBase: txtBase, textoFornecedores: txtForn })
+        });
+        const dataIA = await resIA.json();
+        if (!dataIA.success) throw new Error(dataIA.msg || "Falha ao analisar a cotação.");
+        const itensIA = dataIA.dados;
+
         if (!itensIA || itensIA.length === 0) throw new Error("A IA não retornou itens válidos.");
 
         // Limpa tabela visual

@@ -3,41 +3,6 @@ const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const fs = require("fs");
 
-// Template usado para criar a config inicial em cada máquina onde o app é
-// instalado (build empacotado). Em dev (npm start) continuamos usando o
-// .env do próprio projeto, sem tocar nisso.
-const ENV_TEMPLATE = `OPENAI_API_KEY=
-
-# Banco de dados (MySQL local)
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=sistema_ja_farma
-
-# Servidor
-PORT=3000
-`;
-
-function resolveEnvPath() {
-  if (!app.isPackaged) return path.join(__dirname, ".env");
-
-  const envPath = path.join(app.getPath("userData"), ".env");
-  if (!fs.existsSync(envPath)) {
-    fs.mkdirSync(path.dirname(envPath), { recursive: true });
-    fs.writeFileSync(envPath, ENV_TEMPLATE, "utf8");
-    console.warn(
-      `⚠️  Configuração inicial criada em ${envPath}. Preencha DB_PASSWORD e OPENAI_API_KEY antes de usar o sistema.`
-    );
-  }
-  return envPath;
-}
-
-const ENV_PATH = resolveEnvPath();
-require("dotenv").config({ path: ENV_PATH });
-
-const { analisarCotacao } = require("./aiService");
-
 // pdf-parse embute um pdfjs de 2017 incompatível com o V8 do Electron 43+
 // (falha com "bad XRef entry"/UnknownErrorException em PDFs válidos).
 // Usamos o pdfjs-dist moderno (já é dependência do projeto) via import
@@ -97,18 +62,6 @@ function setupAutoUpdate() {
   autoUpdater.checkForUpdatesAndNotify();
 }
 
-function startServer() {
-  // Roda o Express no próprio processo principal, em vez de um processo
-  // filho separado (child_process.fork+ELECTRON_RUN_AS_NODE e
-  // utilityProcess.fork foram testados e ambos derrubam o app com um crash
-  // nativo do V8 — EXC_BREAKPOINT dentro do compilador JIT — ao relançar o
-  // binário do Electron como processo filho a partir do processo principal
-  // já inicializado; reproduzido tanto em dev quanto no build assinado).
-  // server.js só faz app.listen(), então basta dar require() nele aqui.
-  require("./server.js");
-  console.log("🚀 Servidor API iniciado!");
-}
-
 function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1280, height: 800,
@@ -124,7 +77,6 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-  startServer();
   createWindow();
   setupAutoUpdate();
 
@@ -154,8 +106,4 @@ ipcMain.handle("read-pdfs", async (event, filePaths) => {
     }
   }
   return resultados;
-});
-
-ipcMain.handle("comparar-cotacao", async (event, dados) => {
-  return await analisarCotacao(dados);
 });

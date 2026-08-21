@@ -17,10 +17,10 @@
     "dotenv": "^17.2.3",
     "electron-updater": "^6.8.9",
     "express": "^5.2.1",
-    "mysql2": "^3.16.1",
     "openai": "^6.15.0",
     "pdfjs-dist": "^4.0.379",
-    "pdfkit": "^0.17.2"
+    "pdfkit": "^0.17.2",
+    "pg": "^8.23.0"
   },
   "build": {
     "appId": "com.jafarma.sistema",
@@ -29,11 +29,9 @@
     "files": [
       "main.js",
       "preload.js",
-      "server.js",
-      "aiService.js",
+      "app.js",
       "index.html",
       "style.css",
-      "schema.sql",
       "img/**/*",
       "node_modules/**/*"
     ],
