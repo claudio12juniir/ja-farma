@@ -1,5 +1,5 @@
 // NO INÍCIO DO APP.JS
-const API_URL = "https://ja-farma-api.onrender.com";
+const API_URL = "https://ja-farma.onrender.com";
 // VARIÁVEIS GLOBAIS
 let listaClientes = [];
 let dadosCotacaoAtual = [];

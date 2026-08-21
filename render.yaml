@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: ja-farma-api
+    name: ja-farma
     runtime: node
     plan: free
     buildCommand: npm install
