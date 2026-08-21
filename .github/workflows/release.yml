@@ -11,6 +11,12 @@ permissions:
 jobs:
   build:
     strategy:
+      # max-parallel:1 (em vez de deixar os dois rodarem juntos): quando
+      # macOS e Windows publicam pro mesmo tag ao mesmo tempo, cada um cria
+      # seu próprio rascunho de release (electron-builder não enxerga o
+      # rascunho que o outro job acabou de criar). Rodando em série, o
+      # segundo job encontra e reaproveita o rascunho já criado pelo primeiro.
+      max-parallel: 1
       matrix:
         os: [macos-15, windows-latest]
 
