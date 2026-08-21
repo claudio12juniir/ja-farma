@@ -5,6 +5,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const aiService = require('./aiService');
+const nfeioService = require('./nfeioService');
 
 const app = express();
 
@@ -150,12 +151,12 @@ app.get('/produtos', async (req, res) => {
 });
 
 app.post('/produtos', requireAdmin, async (req, res) => {
-    const { nome, codigo_barras, qtd_estoque, preco_custo, preco_venda, fabricante, anvisa } = req.body;
+    const { nome, codigo_barras, qtd_estoque, preco_custo, preco_venda, fabricante, anvisa, ncm, cfop, csosn, origem_icms, cst_pis, cst_cofins } = req.body;
     if (!nome) return res.status(400).json({ success: false, msg: 'Nome é obrigatório.' });
 
-    const sql = "INSERT INTO produtos (nome, codigo_barras, qtd_estoque, preco_custo, preco_venda, fabricante, anvisa) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id";
+    const sql = "INSERT INTO produtos (nome, codigo_barras, qtd_estoque, preco_custo, preco_venda, fabricante, anvisa, ncm, cfop, csosn, origem_icms, cst_pis, cst_cofins) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id";
     try {
-        const { rows } = await pool.query(sql, [nome, codigo_barras || null, Number(qtd_estoque) || 0, Number(preco_custo) || 0, Number(preco_venda) || 0, fabricante || null, anvisa || null]);
+        const { rows } = await pool.query(sql, [nome, codigo_barras || null, Number(qtd_estoque) || 0, Number(preco_custo) || 0, Number(preco_venda) || 0, fabricante || null, anvisa || null, ncm || null, cfop || null, csosn || null, origem_icms || null, cst_pis || null, cst_cofins || null]);
         res.json({ success: true, id: rows[0].id });
     } catch (err) {
         res.status(500).json({ success: false, msg: err.message });
@@ -163,12 +164,12 @@ app.post('/produtos', requireAdmin, async (req, res) => {
 });
 
 app.put('/produtos/:id', requireAdmin, async (req, res) => {
-    const { nome, codigo_barras, qtd_estoque, preco_custo, preco_venda, fabricante, anvisa } = req.body;
+    const { nome, codigo_barras, qtd_estoque, preco_custo, preco_venda, fabricante, anvisa, ncm, cfop, csosn, origem_icms, cst_pis, cst_cofins } = req.body;
     if (!nome) return res.status(400).json({ success: false, msg: 'Nome é obrigatório.' });
 
-    const sql = "UPDATE produtos SET nome=$1, codigo_barras=$2, qtd_estoque=$3, preco_custo=$4, preco_venda=$5, fabricante=$6, anvisa=$7 WHERE id=$8";
+    const sql = "UPDATE produtos SET nome=$1, codigo_barras=$2, qtd_estoque=$3, preco_custo=$4, preco_venda=$5, fabricante=$6, anvisa=$7, ncm=$8, cfop=$9, csosn=$10, origem_icms=$11, cst_pis=$12, cst_cofins=$13 WHERE id=$14";
     try {
-        await pool.query(sql, [nome, codigo_barras || null, Number(qtd_estoque) || 0, Number(preco_custo) || 0, Number(preco_venda) || 0, fabricante || null, anvisa || null, req.params.id]);
+        await pool.query(sql, [nome, codigo_barras || null, Number(qtd_estoque) || 0, Number(preco_custo) || 0, Number(preco_venda) || 0, fabricante || null, anvisa || null, ncm || null, cfop || null, csosn || null, origem_icms || null, cst_pis || null, cst_cofins || null, req.params.id]);
         res.json({ success: true });
     } catch (err) {
         res.status(500).json({ success: false, msg: err.message });
@@ -320,12 +321,12 @@ app.get('/clientes', async (req, res) => {
 });
 
 app.post('/clientes', async (req, res) => {
-    const { cnpj, nome, ie, cidade, uf, email } = req.body;
+    const { cnpj, nome, ie, cidade, uf, email, bairro, logradouro, numero, cep, codigo_ibge_cidade } = req.body;
     if (!nome) return res.status(400).json({ success: false, msg: 'Razão social é obrigatória.' });
 
-    const sql = "INSERT INTO clientes (cnpj, nome, ie, cidade, uf, email) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id";
+    const sql = "INSERT INTO clientes (cnpj, nome, ie, cidade, uf, email, bairro, logradouro, numero, cep, codigo_ibge_cidade) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id";
     try {
-        const { rows } = await pool.query(sql, [cnpj || null, nome, ie || null, cidade || null, uf || null, email || null]);
+        const { rows } = await pool.query(sql, [cnpj || null, nome, ie || null, cidade || null, uf || null, email || null, bairro || null, logradouro || null, numero || null, cep || null, codigo_ibge_cidade || null]);
         res.json({ success: true, id: rows[0].id });
     } catch (err) {
         res.status(500).json({ success: false, msg: err.message });
@@ -336,6 +337,167 @@ app.delete('/clientes/:id', async (req, res) => {
     try {
         await pool.query("DELETE FROM clientes WHERE id=$1", [req.params.id]);
         res.json({ success: true });
+    } catch (err) {
+        res.status(500).json({ success: false, msg: err.message });
+    }
+});
+
+// ==========================================
+// EMPRESA EMISSORA (dados fiscais da J.A., usados nas notas) — admin apenas
+// ==========================================
+app.get('/empresa', requireAdmin, async (req, res) => {
+    try {
+        const { rows } = await pool.query("SELECT * FROM empresa_emissora WHERE id=1");
+        res.json(rows[0] || null);
+    } catch (err) {
+        res.status(500).json({ success: false, msg: err.message });
+    }
+});
+
+// Salva os dados cadastrais da empresa e sincroniza com a NFe.io no mesmo passo
+// (cria a Empresa lá na primeira vez, atualiza nas próximas).
+app.put('/empresa', requireAdmin, async (req, res) => {
+    const { cnpj, razao_social, nome_fantasia, ie, tax_regime, bairro, logradouro, numero, cep, cidade, uf, codigo_ibge_cidade } = req.body;
+    if (!razao_social || !cnpj) return res.status(400).json({ success: false, msg: 'Razão social e CNPJ são obrigatórios.' });
+
+    try {
+        const { rows: existentes } = await pool.query("SELECT nfeio_company_id FROM empresa_emissora WHERE id=1");
+        const nfeioCompanyIdAtual = existentes[0] ? existentes[0].nfeio_company_id : null;
+
+        const companyPayload = {
+            Name: razao_social,
+            TradeName: nome_fantasia || undefined,
+            FederalTaxNumber: Number(String(cnpj).replace(/\D/g, '')),
+            TaxRegime: tax_regime || 'SimplesNacional',
+            Address: {
+                State: uf,
+                City: { Code: codigo_ibge_cidade, Name: cidade },
+                District: bairro,
+                Street: logradouro,
+                Number: numero,
+                PostalCode: String(cep || '').replace(/\D/g, ''),
+                Country: 'BRA'
+            }
+        };
+
+        let empresaNfeio;
+        try {
+            empresaNfeio = await nfeioService.upsertCompany(nfeioCompanyIdAtual, companyPayload);
+        } catch (erroNfeio) {
+            return res.status(502).json({ success: false, msg: `Dados salvos localmente, mas a NFe.io recusou: ${erroNfeio.message}` });
+        }
+
+        const nfeioCompanyId = (empresaNfeio && (empresaNfeio.Id || empresaNfeio.id)) || nfeioCompanyIdAtual;
+
+        await pool.query(`
+            INSERT INTO empresa_emissora (id, cnpj, razao_social, nome_fantasia, ie, tax_regime, bairro, logradouro, numero, cep, cidade, uf, codigo_ibge_cidade, nfeio_company_id, atualizado_em)
+            VALUES (1, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, CURRENT_TIMESTAMP)
+            ON CONFLICT (id) DO UPDATE SET
+                cnpj=$1, razao_social=$2, nome_fantasia=$3, ie=$4, tax_regime=$5, bairro=$6, logradouro=$7,
+                numero=$8, cep=$9, cidade=$10, uf=$11, codigo_ibge_cidade=$12, nfeio_company_id=$13, atualizado_em=CURRENT_TIMESTAMP
+        `, [cnpj, razao_social, nome_fantasia || null, ie || null, tax_regime || null, bairro || null, logradouro || null, numero || null, cep || null, cidade || null, uf || null, codigo_ibge_cidade || null, nfeioCompanyId || null]);
+
+        res.json({ success: true, nfeio_company_id: nfeioCompanyId });
+    } catch (err) {
+        res.status(500).json({ success: false, msg: err.message });
+    }
+});
+
+// ==========================================
+// NOTAS FISCAIS (emissão via NFe.io)
+// ==========================================
+app.post('/notas', async (req, res) => {
+    const { cliente_id, cotacao_id, itens, operationNature } = req.body;
+    if (!cliente_id || !Array.isArray(itens) || itens.length === 0) {
+        return res.status(400).json({ success: false, msg: 'Informe o cliente e ao menos um item.' });
+    }
+
+    try {
+        const { rows: empresaRows } = await pool.query("SELECT nfeio_company_id FROM empresa_emissora WHERE id=1");
+        const nfeioCompanyId = empresaRows[0] && empresaRows[0].nfeio_company_id;
+        if (!nfeioCompanyId) {
+            return res.status(400).json({ success: false, msg: 'Cadastre e salve os dados da empresa emissora antes de emitir notas (aba Equipe).' });
+        }
+
+        const { rows: clienteRows } = await pool.query("SELECT * FROM clientes WHERE id=$1", [cliente_id]);
+        if (clienteRows.length === 0) return res.status(404).json({ success: false, msg: 'Cliente não encontrado.' });
+        const cliente = clienteRows[0];
+
+        const produtoIds = itens.map(i => i.produto_id);
+        const { rows: produtoRows } = await pool.query("SELECT * FROM produtos WHERE id = ANY($1::int[])", [produtoIds]);
+        const produtosPorId = new Map(produtoRows.map(p => [p.id, p]));
+
+        const itensCompletos = itens.map(i => {
+            const produto = produtosPorId.get(i.produto_id);
+            if (!produto) throw Object.assign(new Error(`Produto ${i.produto_id} não encontrado.`), { code: 'PRODUTO_INEXISTENTE' });
+            return { produto, quantidade: Number(i.quantidade) || 1, valorUnitario: Number(i.valor_unitario) || Number(produto.preco_venda) || 0 };
+        });
+
+        let payload;
+        try {
+            payload = nfeioService.buildInvoicePayload({ cliente, itens: itensCompletos, operationNature });
+        } catch (erroValidacao) {
+            return res.status(400).json({ success: false, msg: erroValidacao.message, code: erroValidacao.code });
+        }
+
+        const notaNfeio = await nfeioService.issueProductInvoice(nfeioCompanyId, payload);
+
+        const { rows } = await pool.query(`
+            INSERT INTO notas_fiscais (cliente_id, cotacao_id, nfeio_invoice_id, status, serie, numero, itens)
+            VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id
+        `, [
+            cliente_id, cotacao_id || null, notaNfeio.id || notaNfeio.Id || null,
+            notaNfeio.status || 'Processing', notaNfeio.serie || null, notaNfeio.number || null,
+            JSON.stringify(payload.items)
+        ]);
+
+        res.json({ success: true, id: rows[0].id, nfeio: notaNfeio });
+    } catch (err) {
+        console.error('Erro ao emitir nota:', err);
+        res.status(err.status === 400 ? 400 : 500).json({ success: false, msg: err.message, detalhes: err.data });
+    }
+});
+
+app.get('/notas', async (req, res) => {
+    try {
+        const { rows } = await pool.query(`
+            SELECT n.*, c.nome AS cliente_nome
+            FROM notas_fiscais n LEFT JOIN clientes c ON c.id = n.cliente_id
+            ORDER BY n.criado_em DESC
+        `);
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ success: false, msg: err.message });
+    }
+});
+
+app.get('/notas/:id', async (req, res) => {
+    try {
+        const { rows } = await pool.query("SELECT * FROM notas_fiscais WHERE id=$1", [req.params.id]);
+        if (rows.length === 0) return res.status(404).json({ success: false, msg: 'Nota não encontrada.' });
+        let nota = rows[0];
+
+        if (nota.status === 'Processing' && nota.nfeio_invoice_id) {
+            const { rows: empresaRows } = await pool.query("SELECT nfeio_company_id FROM empresa_emissora WHERE id=1");
+            const nfeioCompanyId = empresaRows[0] && empresaRows[0].nfeio_company_id;
+            if (nfeioCompanyId) {
+                try {
+                    const atual = await nfeioService.getProductInvoice(nfeioCompanyId, nota.nfeio_invoice_id);
+                    if (atual && atual.status && atual.status !== nota.status) {
+                        const pdfUrl = atual.authorization && atual.authorization.pdf ? atual.authorization.pdf : null;
+                        const xmlUrl = atual.authorization && atual.authorization.xml ? atual.authorization.xml : null;
+                        const chaveAcesso = atual.authorization && atual.authorization.accessKey ? atual.authorization.accessKey : null;
+                        await pool.query(
+                            "UPDATE notas_fiscais SET status=$1, pdf_url=$2, xml_url=$3, chave_acesso=$4 WHERE id=$5",
+                            [atual.status, pdfUrl, xmlUrl, chaveAcesso, nota.id]
+                        );
+                        nota = { ...nota, status: atual.status, pdf_url: pdfUrl, xml_url: xmlUrl, chave_acesso: chaveAcesso };
+                    }
+                } catch (e) { console.error('Erro ao consultar status na NFe.io:', e.message); }
+            }
+        }
+
+        res.json(nota);
     } catch (err) {
         res.status(500).json({ success: false, msg: err.message });
     }

@@ -222,9 +222,10 @@ function showTab(id) {
 
     // Gatilhos de carregamento específicos
     if(id === 'serv1') carregarDashboard();
-    if(id === 'aba-gestao') carregarEquipe();
+    if(id === 'aba-gestao') { carregarEquipe(); carregarEmpresa(); }
     if(id === 'serv2') carregarHistorico();
     if(id === 'aba-nfe') carregarClientes();
+    if(id === 'aba-notas') carregarNotas();
 }
 
 // ==========================================
@@ -318,6 +319,12 @@ function abrirModalProduto(produto = null) {
     document.getElementById('prod-venda').value = produto ? produto.preco_venda : '';
     document.getElementById('prod-fabricante').value = produto ? (produto.fabricante || '') : '';
     document.getElementById('prod-anvisa').value = produto ? (produto.anvisa || '') : '';
+    document.getElementById('prod-ncm').value = produto ? (produto.ncm || '') : '';
+    document.getElementById('prod-cfop').value = produto ? (produto.cfop || '') : '';
+    document.getElementById('prod-origem-icms').value = produto ? (produto.origem_icms || '') : '';
+    document.getElementById('prod-csosn').value = produto ? (produto.csosn || '') : '';
+    document.getElementById('prod-cst-pis').value = produto ? (produto.cst_pis || '') : '';
+    document.getElementById('prod-cst-cofins').value = produto ? (produto.cst_cofins || '') : '';
     document.getElementById('tituloModalProd').innerText = produto ? "Editar Produto" : "Novo Produto";
     document.getElementById('modalProduto').style.display = 'flex';
 }
@@ -331,7 +338,13 @@ async function salvarProduto() {
         preco_custo: Number(document.getElementById('prod-custo').value) || 0,
         preco_venda: Number(document.getElementById('prod-venda').value) || 0,
         fabricante: document.getElementById('prod-fabricante').value.trim(),
-        anvisa: document.getElementById('prod-anvisa').value.trim()
+        anvisa: document.getElementById('prod-anvisa').value.trim(),
+        ncm: document.getElementById('prod-ncm').value.trim(),
+        cfop: document.getElementById('prod-cfop').value.trim(),
+        origem_icms: document.getElementById('prod-origem-icms').value.trim(),
+        csosn: document.getElementById('prod-csosn').value.trim(),
+        cst_pis: document.getElementById('prod-cst-pis').value.trim(),
+        cst_cofins: document.getElementById('prod-cst-cofins').value.trim()
     };
     if (!payload.nome) return alert("Informe o nome do produto.");
 
@@ -910,7 +923,10 @@ async function carregarClientes(termo = '') {
                 <td><strong>${c.nome}</strong></td>
                 <td>${c.cnpj || '-'}</td>
                 <td>${c.cidade || ''}${c.cidade && c.uf ? '/' : ''}${c.uf || ''}</td>
-                <td style="text-align:right"><button onclick="excluirCliente(${c.id})" class="btn-primary btn-sm btn-danger" title="Remover Cliente">🗑</button></td>
+                <td style="text-align:right">
+                    <button onclick="abrirEmitirNota(${c.id})" class="btn-primary btn-sm" title="Emitir Nota Fiscal">🧾 Emitir Nota</button>
+                    <button onclick="excluirCliente(${c.id})" class="btn-primary btn-sm btn-danger" title="Remover Cliente">🗑</button>
+                </td>
             </tr>`;
         });
     } catch (e) { console.error("Erro ao carregar clientes:", e); }
@@ -928,7 +944,12 @@ async function salvarNovoCliente() {
         ie: document.getElementById('cad-ie').value.trim(),
         cidade: document.getElementById('cad-cidade').value.trim(),
         uf: document.getElementById('cad-uf').value.trim(),
-        email: document.getElementById('cad-email').value.trim()
+        email: document.getElementById('cad-email').value.trim(),
+        logradouro: document.getElementById('cad-logradouro').value.trim(),
+        numero: document.getElementById('cad-numero').value.trim(),
+        bairro: document.getElementById('cad-bairro').value.trim(),
+        cep: document.getElementById('cad-cep').value.trim(),
+        codigo_ibge_cidade: document.getElementById('cad-codigo-ibge').value.trim()
     };
     if (!payload.nome) return alert("Informe a Razão Social do cliente.");
 
@@ -936,7 +957,7 @@ async function salvarNovoCliente() {
         const res = await apiFetch('/clientes', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
         const data = await res.json();
         if (data.success) {
-            ['cad-cnpj','cad-nome','cad-ie','cad-cidade','cad-uf','cad-email'].forEach(id => document.getElementById(id).value = '');
+            ['cad-cnpj','cad-nome','cad-ie','cad-cidade','cad-uf','cad-email','cad-logradouro','cad-numero','cad-bairro','cad-cep','cad-codigo-ibge'].forEach(id => document.getElementById(id).value = '');
             alternarViewNfe('lista');
         } else alert(data.msg || "Erro ao salvar cliente.");
     } catch (e) { alert("Erro de conexão."); }
@@ -947,4 +968,215 @@ async function excluirCliente(id) {
         await apiFetch(`/clientes/${id}`, { method: 'DELETE' });
         carregarClientes();
     }
+}
+
+// ==========================================
+// 12. DADOS DA EMPRESA (emissora das notas fiscais)
+// ==========================================
+async function carregarEmpresa() {
+    try {
+        const res = await apiFetch('/empresa');
+        const empresa = await res.json();
+        const statusEl = document.getElementById('emp-status-nfeio');
+        if (!empresa) { statusEl.textContent = ''; return; }
+
+        document.getElementById('emp-cnpj').value = empresa.cnpj || '';
+        document.getElementById('emp-razao-social').value = empresa.razao_social || '';
+        document.getElementById('emp-nome-fantasia').value = empresa.nome_fantasia || '';
+        document.getElementById('emp-ie').value = empresa.ie || '';
+        document.getElementById('emp-tax-regime').value = empresa.tax_regime || 'SimplesNacional';
+        document.getElementById('emp-codigo-ibge').value = empresa.codigo_ibge_cidade || '';
+        document.getElementById('emp-logradouro').value = empresa.logradouro || '';
+        document.getElementById('emp-numero').value = empresa.numero || '';
+        document.getElementById('emp-bairro').value = empresa.bairro || '';
+        document.getElementById('emp-cep').value = empresa.cep || '';
+        document.getElementById('emp-cidade').value = empresa.cidade || '';
+        document.getElementById('emp-uf').value = empresa.uf || '';
+
+        statusEl.textContent = empresa.nfeio_company_id
+            ? '✅ Sincronizado com a NFe.io'
+            : '⚠️ Ainda não sincronizado com a NFe.io — salve os dados pra sincronizar.';
+    } catch (e) { console.error('Erro ao carregar dados da empresa:', e); }
+}
+
+async function salvarEmpresa() {
+    const payload = {
+        cnpj: document.getElementById('emp-cnpj').value.trim(),
+        razao_social: document.getElementById('emp-razao-social').value.trim(),
+        nome_fantasia: document.getElementById('emp-nome-fantasia').value.trim(),
+        ie: document.getElementById('emp-ie').value.trim(),
+        tax_regime: document.getElementById('emp-tax-regime').value,
+        codigo_ibge_cidade: document.getElementById('emp-codigo-ibge').value.trim(),
+        logradouro: document.getElementById('emp-logradouro').value.trim(),
+        numero: document.getElementById('emp-numero').value.trim(),
+        bairro: document.getElementById('emp-bairro').value.trim(),
+        cep: document.getElementById('emp-cep').value.trim(),
+        cidade: document.getElementById('emp-cidade').value.trim(),
+        uf: document.getElementById('emp-uf').value.trim().toUpperCase()
+    };
+    if (!payload.razao_social || !payload.cnpj) return alert('Informe ao menos Razão Social e CNPJ.');
+
+    try {
+        const res = await apiFetch('/empresa', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (data.success) {
+            alert('Dados da empresa salvos e sincronizados com a NFe.io.');
+            carregarEmpresa();
+        } else alert(data.msg || 'Erro ao salvar dados da empresa.');
+    } catch (e) { alert('Erro de conexão.'); }
+}
+
+// ==========================================
+// 13. EMISSÃO DE NOTA FISCAL (NFe.io)
+// ==========================================
+let itensNotaAtual = [];
+let resultadosBuscaNota = [];
+
+function abrirEmitirNota(clienteId) {
+    const cliente = listaClientes.find(c => c.id === clienteId);
+    document.getElementById('nota-cliente-id').value = clienteId;
+    document.getElementById('nota-cliente-nome').innerText = cliente ? cliente.nome : '';
+    itensNotaAtual = [];
+    resultadosBuscaNota = [];
+    document.getElementById('nota-busca-produto').value = '';
+    document.getElementById('nota-resultados-busca').innerHTML = '';
+    document.getElementById('nota-view-confirmar').style.display = 'none';
+    document.getElementById('nota-view-montar').style.display = 'block';
+    renderItensNota();
+    document.getElementById('modalEmitirNota').style.display = 'flex';
+}
+
+function fecharModalNota() {
+    document.getElementById('modalEmitirNota').style.display = 'none';
+}
+
+async function buscarProdutoParaNota() {
+    const termo = document.getElementById('nota-busca-produto').value.trim();
+    const div = document.getElementById('nota-resultados-busca');
+    if (!termo) { div.innerHTML = ''; return; }
+    try {
+        const res = await apiFetch(`/produtos?busca=${encodeURIComponent(termo)}`);
+        resultadosBuscaNota = await res.json();
+        if (resultadosBuscaNota.length === 0) { div.innerHTML = '<p style="color:#64748b;">Nenhum produto encontrado.</p>'; return; }
+        div.innerHTML = resultadosBuscaNota.map((p, i) => `
+            <div style="display:flex; justify-content:space-between; align-items:center; padding:8px; border-bottom:1px solid #e2e8f0;">
+                <span>${p.nome} <small style="color:#64748b;">(estoque: ${p.qtd_estoque})</small></span>
+                <button class="btn-primary btn-sm" onclick="adicionarItemNota(${i})">+ Adicionar</button>
+            </div>
+        `).join('');
+    } catch (e) { console.error('Erro ao buscar produto:', e); }
+}
+
+function adicionarItemNota(idx) {
+    const produto = resultadosBuscaNota[idx];
+    if (!produto) return;
+    if (itensNotaAtual.some(i => i.produto.id === produto.id)) return alert('Este produto já foi adicionado.');
+    itensNotaAtual.push({ produto, quantidade: 1, valorUnitario: Number(produto.preco_venda) || 0 });
+    renderItensNota();
+}
+
+function removerItemNota(idx) {
+    itensNotaAtual.splice(idx, 1);
+    renderItensNota();
+}
+
+function atualizarQuantidadeNota(idx, valor) {
+    itensNotaAtual[idx].quantidade = Number(valor) || 1;
+}
+
+function atualizarValorUnitarioNota(idx, valor) {
+    itensNotaAtual[idx].valorUnitario = Number(valor) || 0;
+}
+
+function renderItensNota() {
+    const tbody = document.getElementById('nota-tabela-itens');
+    if (itensNotaAtual.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Nenhum item adicionado ainda.</td></tr>';
+        return;
+    }
+    tbody.innerHTML = itensNotaAtual.map((item, i) => `
+        <tr>
+            <td>${item.produto.nome}</td>
+            <td><input type="number" min="1" value="${item.quantidade}" class="modal-input" style="width:70px;" onchange="atualizarQuantidadeNota(${i}, this.value)"></td>
+            <td><input type="number" step="0.01" value="${item.valorUnitario}" class="modal-input" style="width:100px;" onchange="atualizarValorUnitarioNota(${i}, this.value)"></td>
+            <td><button onclick="removerItemNota(${i})" class="btn-primary btn-sm btn-danger">🗑</button></td>
+        </tr>
+    `).join('');
+}
+
+function revisarNota() {
+    if (itensNotaAtual.length === 0) return alert('Adicione ao menos um item.');
+
+    let temPendencia = false;
+    const linhas = itensNotaAtual.map(item => {
+        const p = item.produto;
+        const faltando = !p.ncm || !p.cfop;
+        if (faltando) temPendencia = true;
+        const total = (item.quantidade * item.valorUnitario).toFixed(2);
+        return `
+            <tr style="${faltando ? 'color:#dc2626;' : ''}">
+                <td>${p.nome}</td>
+                <td>${item.quantidade}</td>
+                <td>R$ ${item.valorUnitario.toFixed(2)}</td>
+                <td>R$ ${total}</td>
+                <td>${p.ncm || '❌ sem NCM'}</td>
+                <td>${p.cfop || '❌ sem CFOP'}</td>
+                <td>${p.csosn || '-'}</td>
+            </tr>`;
+    }).join('');
+
+    const totalGeral = itensNotaAtual.reduce((acc, i) => acc + i.quantidade * i.valorUnitario, 0).toFixed(2);
+
+    document.getElementById('nota-resumo-confirmacao').innerHTML = `
+        <div class="container-tabela" style="margin-top: 10px;">
+            <table class="team-table">
+                <thead><tr><th>Produto</th><th>Qtd</th><th>Vlr Unit.</th><th>Total</th><th>NCM</th><th>CFOP</th><th>CSOSN/CST</th></tr></thead>
+                <tbody>${linhas}</tbody>
+            </table>
+        </div>
+        <p style="text-align:right; font-weight:bold; margin-top:10px;">Total da Nota: R$ ${totalGeral}</p>
+        ${temPendencia ? '<p style="color:#dc2626; font-weight:bold;">⚠️ Complete o cadastro fiscal (NCM/CFOP) dos produtos destacados antes de emitir — a NFe.io vai recusar a nota sem esses dados.</p>' : ''}
+    `;
+    document.getElementById('nota-view-montar').style.display = 'none';
+    document.getElementById('nota-view-confirmar').style.display = 'block';
+}
+
+async function confirmarEmissaoNota() {
+    const clienteId = document.getElementById('nota-cliente-id').value;
+    const payload = {
+        cliente_id: Number(clienteId),
+        itens: itensNotaAtual.map(i => ({ produto_id: i.produto.id, quantidade: i.quantidade, valor_unitario: i.valorUnitario }))
+    };
+    try {
+        const res = await apiFetch('/notas', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+        const data = await res.json();
+        if (data.success) {
+            alert('Nota enviada para a NFe.io. Acompanhe o status em "Notas Fiscais".');
+            fecharModalNota();
+            showTab('aba-notas');
+        } else alert(data.msg || 'Erro ao emitir nota.');
+    } catch (e) { alert('Erro de conexão.'); }
+}
+
+async function carregarNotas() {
+    const tbody = document.getElementById('tabela-notas');
+    try {
+        const res = await apiFetch('/notas');
+        const notas = await res.json();
+        if (notas.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Nenhuma nota emitida ainda.</td></tr>'; return; }
+        tbody.innerHTML = notas.map(n => {
+            const data = n.criado_em ? new Date(n.criado_em).toLocaleString('pt-BR') : '-';
+            const docs = [
+                n.pdf_url ? `<a href="${n.pdf_url}" target="_blank">PDF</a>` : '',
+                n.xml_url ? `<a href="${n.xml_url}" target="_blank">XML</a>` : ''
+            ].filter(Boolean).join(' | ') || '-';
+            return `<tr>
+                <td>${data}</td>
+                <td>${n.cliente_nome || '-'}</td>
+                <td>${n.status}</td>
+                <td>${n.numero || '-'}${n.serie ? '/' + n.serie : ''}</td>
+                <td style="text-align:right;">${docs}</td>
+            </tr>`;
+        }).join('');
+    } catch (e) { console.error('Erro ao carregar notas:', e); }
 }

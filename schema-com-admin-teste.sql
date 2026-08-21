@@ -23,6 +23,14 @@ CREATE TABLE IF NOT EXISTS produtos (
     unidade_medida VARCHAR(20) DEFAULT 'UN',
     anvisa VARCHAR(50),
     fabricante VARCHAR(100),
+    -- Classificação fiscal do produto (NF-e) — dado cadastral informado pela
+    -- empresa/contador de quem usa o sistema, nunca calculado por aqui.
+    ncm VARCHAR(10),
+    cfop VARCHAR(10),
+    csosn VARCHAR(10),
+    origem_icms VARCHAR(2),
+    cst_pis VARCHAR(5),
+    cst_cofins VARCHAR(5),
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 CREATE INDEX IF NOT EXISTS idx_produtos_nome ON produtos (nome);
@@ -47,6 +55,49 @@ CREATE TABLE IF NOT EXISTS clientes (
     cidade VARCHAR(100),
     uf VARCHAR(2),
     email VARCHAR(150),
+    -- Endereço completo, exigido pela NFe.io pra emitir nota pro cliente.
+    bairro VARCHAR(100),
+    logradouro VARCHAR(150),
+    numero VARCHAR(20),
+    cep VARCHAR(9),
+    codigo_ibge_cidade VARCHAR(7),
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Dados cadastrais da empresa emissora das notas fiscais (hoje só a J.A. — linha
+-- única, id=1). Tudo aqui é informado pelo próprio usuário/contador; o sistema não
+-- calcula nem valida regime tributário ou dados fiscais de ninguém.
+CREATE TABLE IF NOT EXISTS empresa_emissora (
+    id INT PRIMARY KEY DEFAULT 1,
+    cnpj VARCHAR(20),
+    razao_social VARCHAR(150),
+    nome_fantasia VARCHAR(150),
+    ie VARCHAR(30),
+    tax_regime VARCHAR(40),
+    bairro VARCHAR(100),
+    logradouro VARCHAR(150),
+    numero VARCHAR(20),
+    cep VARCHAR(9),
+    cidade VARCHAR(100),
+    uf VARCHAR(2),
+    codigo_ibge_cidade VARCHAR(7),
+    nfeio_company_id VARCHAR(50),
+    atualizado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT empresa_emissora_singleton CHECK (id = 1)
+);
+
+CREATE TABLE IF NOT EXISTS notas_fiscais (
+    id SERIAL PRIMARY KEY,
+    cliente_id INT REFERENCES clientes(id),
+    cotacao_id INT REFERENCES cotacoes(id),
+    nfeio_invoice_id VARCHAR(50),
+    status VARCHAR(30) NOT NULL DEFAULT 'Processing',
+    serie INT,
+    numero BIGINT,
+    chave_acesso VARCHAR(60),
+    pdf_url VARCHAR(255),
+    xml_url VARCHAR(255),
+    itens JSONB NOT NULL,
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

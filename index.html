@@ -24,6 +24,7 @@
         <button onclick="showTab('intro')"><span class="menu-icon">🏠</span>Início</button>
         <button onclick="showTab('aba-estoque')"><span class="menu-icon">📦</span>Estoque</button>
         <button onclick="showTab('aba-nfe')"><span class="menu-icon">🧾</span>Emissão NF-e</button>
+        <button onclick="showTab('aba-notas')"><span class="menu-icon">📄</span>Notas Fiscais</button>
         <button onclick="showTab('serv2')"><span class="menu-icon">🕒</span>Histórico</button>
         <button class="admin-only" onclick="showTab('serv1')"><span class="menu-icon">📊</span>Análise Mensal</button>
         <button class="admin-only" onclick="showTab('aba-gestao')"><span class="menu-icon">👥</span>Equipe</button>
@@ -142,14 +143,42 @@
                     </div>
                     <div class="form-grid-3" style="margin-top: 20px;">
                         <div class="input-group"><label>Cidade</label><input type="text" id="cad-cidade" class="modal-input"></div>
-                        <div class="input-group"><label>UF</label><input type="text" id="cad-uf" class="modal-input"></div>
+                        <div class="input-group"><label>UF</label><input type="text" id="cad-uf" class="modal-input" maxlength="2"></div>
                         <div class="input-group"><label>Email</label><input type="text" id="cad-email" class="modal-input"></div>
+                    </div>
+                    <p style="color: #64748b; font-size: 0.85rem; margin-top: 20px;">
+                        Endereço completo, necessário para emitir Nota Fiscal para este cliente.
+                    </p>
+                    <div class="form-grid-3" style="margin-top: 10px;">
+                        <div class="input-group"><label>Logradouro</label><input type="text" id="cad-logradouro" class="modal-input"></div>
+                        <div class="input-group"><label>Número</label><input type="text" id="cad-numero" class="modal-input"></div>
+                        <div class="input-group"><label>Bairro</label><input type="text" id="cad-bairro" class="modal-input"></div>
+                    </div>
+                    <div class="form-grid-3" style="margin-top: 10px;">
+                        <div class="input-group"><label>CEP</label><input type="text" id="cad-cep" class="modal-input"></div>
+                        <div class="input-group"><label>Código IBGE da Cidade</label><input type="text" id="cad-codigo-ibge" class="modal-input" placeholder="7 dígitos"></div>
                     </div>
                     <div style="margin-top: 20px; text-align: right;">
                         <button class="btn-primary" onclick="salvarNovoCliente()">SALVAR</button>
                         <button class="btn-back" onclick="alternarViewNfe('lista')">Cancelar</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="aba-notas" class="tab">
+        <div class="tab-content-wrapper">
+            <button class="btn-back" onclick="showTab('intro')">← VOLTAR AO MENU</button>
+            <div class="header-equipe">
+                <h1>Notas Fiscais Emitidas</h1>
+                <p>Histórico de notas enviadas para a NFe.io e o status de cada uma.</p>
+            </div>
+            <div class="container-tabela">
+                <table class="team-table">
+                    <thead><tr><th>Data</th><th>Cliente</th><th>Status</th><th>Nº/Série</th><th style="text-align:right;">Documentos</th></tr></thead>
+                    <tbody id="tabela-notas"></tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -220,6 +249,47 @@
             <div class="header-equipe">
                 <h1>Gestão de Acessos</h1>
                 <p>Controle de usuários do sistema (Exclusivo Administrador)</p>
+            </div>
+            <div class="glass-card" style="margin-bottom: 30px; border-left: 5px solid #16a34a;">
+                <h3 style="color: #14532d; margin-bottom: 5px;">🏢 Dados da Empresa (Emissor das Notas Fiscais)</h3>
+                <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 15px;">
+                    Esses dados são usados para emitir Notas Fiscais em nome desta empresa. A responsabilidade pela
+                    exatidão do CNPJ, Inscrição Estadual e Regime Tributário é de quem preenche este cadastro
+                    (o próprio contador da empresa, de preferência).
+                </p>
+                <div class="form-grid-3">
+                    <div class="input-group"><label>CNPJ</label><input type="text" id="emp-cnpj" class="modal-input" placeholder="Somente números"></div>
+                    <div class="input-group"><label>Razão Social</label><input type="text" id="emp-razao-social" class="modal-input"></div>
+                    <div class="input-group"><label>Nome Fantasia</label><input type="text" id="emp-nome-fantasia" class="modal-input"></div>
+                </div>
+                <div class="form-grid-3" style="margin-top: 15px;">
+                    <div class="input-group"><label>Inscrição Estadual (IE)</label><input type="text" id="emp-ie" class="modal-input"></div>
+                    <div class="input-group">
+                        <label>Regime Tributário</label>
+                        <select id="emp-tax-regime" class="modal-input" style="height: 45px;">
+                            <option value="SimplesNacional">Simples Nacional</option>
+                            <option value="LucroPresumido">Lucro Presumido</option>
+                            <option value="LucroReal">Lucro Real</option>
+                            <option value="MicroempreendedorIndividual">MEI</option>
+                            <option value="Isento">Isento</option>
+                        </select>
+                    </div>
+                    <div class="input-group"><label>Código IBGE da Cidade</label><input type="text" id="emp-codigo-ibge" class="modal-input" placeholder="7 dígitos"></div>
+                </div>
+                <div class="form-grid-3" style="margin-top: 15px;">
+                    <div class="input-group"><label>Logradouro</label><input type="text" id="emp-logradouro" class="modal-input"></div>
+                    <div class="input-group"><label>Número</label><input type="text" id="emp-numero" class="modal-input"></div>
+                    <div class="input-group"><label>Bairro</label><input type="text" id="emp-bairro" class="modal-input"></div>
+                </div>
+                <div class="form-grid-3" style="margin-top: 15px;">
+                    <div class="input-group"><label>CEP</label><input type="text" id="emp-cep" class="modal-input"></div>
+                    <div class="input-group"><label>Cidade</label><input type="text" id="emp-cidade" class="modal-input"></div>
+                    <div class="input-group"><label>UF</label><input type="text" id="emp-uf" class="modal-input" maxlength="2"></div>
+                </div>
+                <div style="margin-top: 15px; display: flex; align-items: center; gap: 15px;">
+                    <button class="btn-primary" onclick="salvarEmpresa()">💾 Salvar dados</button>
+                    <span id="emp-status-nfeio" style="font-size: 0.85rem; color: #64748b;"></span>
+                </div>
             </div>
             <div class="glass-card" style="margin-bottom: 30px; border-left: 5px solid #1677ff;">
                 <h3 style="color: #1e3a8a; margin-bottom: 15px;">👤 Cadastrar Novo Colaborador</h3>
@@ -350,9 +420,69 @@
             <div class="input-group"><label>Fabricante</label><input type="text" id="prod-fabricante" class="modal-input"></div>
             <div class="input-group" style="grid-column: span 2;"><label>Registro ANVISA</label><input type="text" id="prod-anvisa" class="modal-input"></div>
         </div>
+        <p style="color: #64748b; font-size: 0.8rem; margin-top: 15px;">
+            Classificação fiscal (para emissão de Nota Fiscal) — dados de responsabilidade de quem cadastra o
+            produto (empresa/contador). O sistema não calcula nem valida esses valores.
+        </p>
+        <div class="form-grid-3" style="margin-top: 10px;">
+            <div class="input-group"><label>NCM</label><input type="text" id="prod-ncm" class="modal-input"></div>
+            <div class="input-group"><label>CFOP</label><input type="text" id="prod-cfop" class="modal-input"></div>
+            <div class="input-group"><label>Origem ICMS</label><input type="text" id="prod-origem-icms" class="modal-input" placeholder="Ex: 0"></div>
+        </div>
+        <div class="form-grid-3" style="margin-top: 10px;">
+            <div class="input-group"><label>CSOSN/CST ICMS</label><input type="text" id="prod-csosn" class="modal-input"></div>
+            <div class="input-group"><label>CST PIS</label><input type="text" id="prod-cst-pis" class="modal-input"></div>
+            <div class="input-group"><label>CST COFINS</label><input type="text" id="prod-cst-cofins" class="modal-input"></div>
+        </div>
         <div class="modal-actions" style="margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end;">
             <button onclick="document.getElementById('modalProduto').style.display='none'" class="btn-back" style="margin:0;">Cancelar</button>
             <button class="btn-primary" onclick="salvarProduto()">SALVAR PRODUTO</button>
+        </div>
+    </div>
+</div>
+
+<div id="modalEmitirNota" class="modal">
+    <div class="modal-content" style="width: 700px;">
+        <input type="hidden" id="nota-cliente-id">
+        <h2 style="color: #1e3a8a;">🧾 Emitir Nota Fiscal — <span id="nota-cliente-nome"></span></h2>
+
+        <div id="nota-view-montar">
+            <div class="form-grid-3">
+                <div class="input-group" style="grid-column: span 2;">
+                    <label>Buscar produto no estoque</label>
+                    <input type="text" id="nota-busca-produto" class="modal-input" placeholder="Nome do produto..." onkeyup="if(event.key==='Enter') buscarProdutoParaNota()">
+                </div>
+                <div class="input-group" style="display:flex; align-items:end;">
+                    <button class="btn-primary" style="width:100%; height:45px; margin:0;" onclick="buscarProdutoParaNota()">Buscar</button>
+                </div>
+            </div>
+            <div id="nota-resultados-busca" style="margin-top: 10px;"></div>
+
+            <h3 style="color: #64748b; margin-top: 20px; font-size: 1rem;">Itens da Nota</h3>
+            <div class="container-tabela">
+                <table class="team-table">
+                    <thead><tr><th>Produto</th><th>Qtd</th><th>Vlr. Unit. (R$)</th><th></th></tr></thead>
+                    <tbody id="nota-tabela-itens"></tbody>
+                </table>
+            </div>
+
+            <div class="modal-actions" style="margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end;">
+                <button onclick="fecharModalNota()" class="btn-back" style="margin:0;">Cancelar</button>
+                <button class="btn-primary" onclick="revisarNota()">Revisar e Emitir →</button>
+            </div>
+        </div>
+
+        <div id="nota-view-confirmar" style="display: none;">
+            <p style="color: #64748b; font-size: 0.85rem;">
+                Confira os valores fiscais abaixo antes de emitir — eles são exatamente os que estão cadastrados
+                no estoque e serão enviados para a NFe.io. A responsabilidade pela exatidão desses valores é de
+                quem os cadastrou.
+            </p>
+            <div id="nota-resumo-confirmacao"></div>
+            <div class="modal-actions" style="margin-top: 20px; display: flex; gap: 10px; justify-content: flex-end;">
+                <button onclick="document.getElementById('nota-view-confirmar').style.display='none'; document.getElementById('nota-view-montar').style.display='block';" class="btn-back" style="margin:0;">← Voltar</button>
+                <button class="btn-primary" onclick="confirmarEmissaoNota()">✅ Confirmar Emissão</button>
+            </div>
         </div>
     </div>
 </div>
