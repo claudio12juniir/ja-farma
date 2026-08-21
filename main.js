@@ -1,9 +1,41 @@
-require("dotenv").config();
 // CORREÇÃO CRÍTICA NA LINHA ABAIXO: Adicionado ipcMain
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("path");
 const fs = require("fs");
-const { fork } = require('child_process');
+
+// Template usado para criar a config inicial em cada máquina onde o app é
+// instalado (build empacotado). Em dev (npm start) continuamos usando o
+// .env do próprio projeto, sem tocar nisso.
+const ENV_TEMPLATE = `OPENAI_API_KEY=
+
+# Banco de dados (MySQL local)
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=sistema_ja_farma
+
+# Servidor
+PORT=3000
+`;
+
+function resolveEnvPath() {
+  if (!app.isPackaged) return path.join(__dirname, ".env");
+
+  const envPath = path.join(app.getPath("userData"), ".env");
+  if (!fs.existsSync(envPath)) {
+    fs.mkdirSync(path.dirname(envPath), { recursive: true });
+    fs.writeFileSync(envPath, ENV_TEMPLATE, "utf8");
+    console.warn(
+      `⚠️  Configuração inicial criada em ${envPath}. Preencha DB_PASSWORD e OPENAI_API_KEY antes de usar o sistema.`
+    );
+  }
+  return envPath;
+}
+
+const ENV_PATH = resolveEnvPath();
+require("dotenv").config({ path: ENV_PATH });
+
 const { analisarCotacao } = require("./aiService");
 
 // pdf-parse embute um pdfjs de 2017 incompatível com o V8 do Electron 43+
@@ -36,10 +68,44 @@ async function extrairTextoPDF(buffer) {
 }
 
 let mainWindow;
-let serverProcess;
+
+function setupAutoUpdate() {
+  if (!app.isPackaged) return;
+
+  const { autoUpdater } = require("electron-updater");
+  autoUpdater.autoDownload = true;
+
+  autoUpdater.on("update-downloaded", () => {
+    dialog
+      .showMessageBox(mainWindow, {
+        type: "info",
+        title: "Atualização disponível",
+        message: "Uma nova versão foi baixada. Reiniciar agora para instalar?",
+        buttons: ["Reiniciar agora", "Depois"],
+        defaultId: 0,
+        cancelId: 1,
+      })
+      .then(({ response }) => {
+        if (response === 0) autoUpdater.quitAndInstall();
+      });
+  });
+
+  autoUpdater.on("error", (err) => {
+    console.error("❌ Erro no auto-update:", err);
+  });
+
+  autoUpdater.checkForUpdatesAndNotify();
+}
 
 function startServer() {
-  serverProcess = fork(path.join(__dirname, 'server.js'));
+  // Roda o Express no próprio processo principal, em vez de um processo
+  // filho separado (child_process.fork+ELECTRON_RUN_AS_NODE e
+  // utilityProcess.fork foram testados e ambos derrubam o app com um crash
+  // nativo do V8 — EXC_BREAKPOINT dentro do compilador JIT — ao relançar o
+  // binário do Electron como processo filho a partir do processo principal
+  // já inicializado; reproduzido tanto em dev quanto no build assinado).
+  // server.js só faz app.listen(), então basta dar require() nele aqui.
+  require("./server.js");
   console.log("🚀 Servidor API iniciado!");
 }
 
@@ -60,14 +126,11 @@ function createWindow() {
 app.whenReady().then(() => {
   startServer();
   createWindow();
-  
+  setupAutoUpdate();
+
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
-});
-
-app.on("will-quit", () => {
-  if (serverProcess) serverProcess.kill();
 });
 
 app.on("window-all-closed", () => {

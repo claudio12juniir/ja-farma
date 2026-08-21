@@ -1,8 +1,13 @@
 const OpenAI = require("openai");
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
+// Lazy: se instanciássemos aqui no carregamento do módulo, uma máquina nova
+// sem OPENAI_API_KEY configurada ainda derrubaria o processo inteiro do
+// Electron ao dar require() neste arquivo, antes mesmo da janela abrir.
+let client;
+function getClient() {
+  if (!client) client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  return client;
+}
 
 async function analisarCotacao({ textoBase, textoFornecedores }) {
   console.log("🤖 IA: Recebi o texto. Tamanho base:", textoBase.length);
@@ -40,7 +45,7 @@ async function analisarCotacao({ textoBase, textoFornecedores }) {
   `;
 
   try {
-    const response = await client.chat.completions.create({
+    const response = await getClient().chat.completions.create({
       model: "gpt-4o",
       messages: [{ role: "user", content: prompt }],
       temperature: 0,
